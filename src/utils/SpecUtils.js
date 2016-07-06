@@ -104,6 +104,7 @@ export default class SpecUtils {
         return this.graph.reduce(function(accum, item) {
             Array.prototype.push.apply(accum, item.links.reduce((transitions, transition) => {
                 transitions.push(transition.d3);
+                debugger;
                 return transitions;
             }, []));
             return accum;

@@ -5,26 +5,16 @@ export const CSSpec = {
     "navSpecs": [
         {
             "name": "CS106A",
-            "url": {
-                "path": "",
-                "urlAccess": true
-            },
-            "viewState": [
-                {
-                    "type": "class",
-                    "viewId": "cs106AviewStateviewID"
-                }
-            ],
             "transitions": [
                 {
                     "action": "prereq",
-                    "to": "CS106B",
+                    "to": "CS103"
                 },
                 {
                     "action": "prereq",
-                    "to": "CS103"
+                    "to": "CS106B"
                 }
-            ]
+            ],
         },
         {
             "name": "CS103",
@@ -67,7 +57,10 @@ export const CSSpec = {
             ]
         },
         {
-            "name": "CS110"
+            "name": "CS110",
+            "transitions": [
+
+            ]
         }
     ]
 }

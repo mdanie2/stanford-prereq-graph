@@ -32,9 +32,7 @@ export default class ForceDirectedGraph {
         const zoomed = () => {
             container.attr('transform', 'translate(' + d3.event.translate + ')scale(' + d3.event.scale + ')');
         }
-
-        debugger;
-
+        
         let zoom = d3.behavior.zoom()
             .scaleExtent([1, 10])
             .on('zoom', zoomed);
@@ -90,6 +88,7 @@ export default class ForceDirectedGraph {
         // add the curvy lines
         const tick = () => {
             path.attr('d', (d) => {
+                debugger;
                 const sourceRadius = ForceDirectedGraph.SpecUtils.getNodeRadius(d.name || d.source.name),
                     targetRadius = ForceDirectedGraph.SpecUtils.getNodeRadius(d.name || d.target.name) * (d.target.type === 'decision' ? 1.5 : 1);
                 let deltaX = d.target.x - d.source.x,

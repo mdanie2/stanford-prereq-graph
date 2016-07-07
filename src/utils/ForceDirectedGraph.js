@@ -31,7 +31,7 @@ export default class ForceDirectedGraph {
 
         const zoomed = () => {
             container.attr('transform', 'translate(' + d3.event.translate + ')scale(' + d3.event.scale + ')');
-        }
+        };
 
         let zoom = d3.behavior.zoom()
             .scaleExtent([1, 10])
@@ -129,8 +129,8 @@ export default class ForceDirectedGraph {
             .links(links)
             .size([width, height])
             .gravity(0.06)
-            .linkDistance(100)
-            .charge(-600)
+            .linkDistance(150)
+            .charge(-500)
             .on('tick', tick)
             .start();
 

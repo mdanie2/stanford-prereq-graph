@@ -55,6 +55,8 @@ export default class SpecUtils {
         let numOfConnections = {};
         this.graph.map((node) => {
             node.links.map((link) => {
+                numOfConnections[link.d3.source] = numOfConnections[link.d3.source] ?
+                    numOfConnections[link.d3.source] : 1; //ensures nodes with no connections will have a node radius
                 numOfConnections[link.d3.target] = numOfConnections[link.d3.target] ? numOfConnections[link.d3.target] + 1 : 1;
             });
         });
@@ -104,7 +106,6 @@ export default class SpecUtils {
         return this.graph.reduce(function(accum, item) {
             Array.prototype.push.apply(accum, item.links.reduce((transitions, transition) => {
                 transitions.push(transition.d3);
-                debugger;
                 return transitions;
             }, []));
             return accum;

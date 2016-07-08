@@ -10,7 +10,7 @@ export default class ForceDirectedGraph {
     }
 
     buildBidirectionalGraph() {
-        let radius = ForceDirectedGraph.SpecUtils.radius;
+        const radius = ForceDirectedGraph.SpecUtils.radius;
         let nodes = {};
         const links = ForceDirectedGraph.SpecUtils.getD3Links();
 
@@ -61,9 +61,8 @@ export default class ForceDirectedGraph {
             });
 
 
-
-        // add the curvy lines
         const tick = () => {
+            // add the curvy lines
             path.attr('d', (d) => {
                 let deltaX = d.target.x - d.source.x,
                     deltaY = d.target.y - d.source.y,

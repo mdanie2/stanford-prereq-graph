@@ -54,9 +54,9 @@ export default class SpecUtils {
     cacheNodeConnections() {
         let numOfConnections = {};
         this.graph.map((node) => {
+            //TODO: This still doesn't add nodes with no connections to the graph
+            numOfConnections[node.name] = numOfConnections[node.name] ? numOfConnections[node.name] : 1; //every node is connected to itself
             node.links.map((link) => {
-                numOfConnections[link.d3.source] = numOfConnections[link.d3.source] ?
-                    numOfConnections[link.d3.source] : 1; //ensures nodes with no connections will have a node radius
                 numOfConnections[link.d3.target] = numOfConnections[link.d3.target] ? numOfConnections[link.d3.target] + 1 : 1;
             });
         });

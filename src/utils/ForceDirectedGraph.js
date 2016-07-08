@@ -12,7 +12,8 @@ export default class ForceDirectedGraph {
     buildBidirectionalGraph() {
         let radius = ForceDirectedGraph.SpecUtils.radius;
         let nodes = {};
-        const links = ForceDirectedGraph.SpecUtils.getD3Links(this.graph);
+        const links = ForceDirectedGraph.SpecUtils.getD3Links();
+
         // Compute the distinct nodes from the links.
         links.forEach(function(link) {
             if (nodes[link.source]) {
@@ -45,54 +46,29 @@ export default class ForceDirectedGraph {
             .attr('transform', 'translate(' + margin.left + ',' + margin.right + ')')
             .call(zoom);
 
-        let rect = svg.append('rect')
-            .attr('width', width)
-            .attr('height', height)
-            .style('fill', 'none')
-            .style('pointer-events', 'all');
+        //TODO: Seems uneeded. remove?
+        // let rect = svg.append('rect')
+        //     .attr('width', width)
+        //     .attr('height', height)
+        //     .style('fill', 'none')
+        //     .style('pointer-events', 'all');
+
+        let tip = d3.tip()
+            .attr('class', 'd3-tip')
+            .offset([-10, 0])
+            .html(function (d) {
+                return "TESTING";
+            });
 
         let container = svg.append('g');
 
-        container.append('g')
-            .attr('class', 'x axis')
-            .selectAll('line')
-            .data(d3.range(0, width, 10))
-            .enter().append('line')
-            .attr('x1', function(d) { return d; })
-            .attr('y1', 0)
-            .attr('x2', function(d) { return d; })
-            .attr('y2', height);
-
-        container.append('g')
-            .attr('class', 'y axis')
-            .selectAll('line')
-            .data(d3.range(0, height, 10))
-            .enter().append('line')
-            .attr('x1', 0)
-            .attr('y1', function(d) { return d; })
-            .attr('x2', width)
-            .attr('y2', function(d) { return d; });
-        // build the arrow.
-        container.append('svg:defs').selectAll('marker')
-            .data(['end'])      // Different link/path types can be defined here
-            .enter().append('svg:marker')    // This section adds in the arrows
-            .attr('id', String)
-            .attr('viewBox', '0 -5 10 10')
-            .attr('refX', 15)
-            .attr('refY', -0.5)
-            .attr('markerWidth', 6)
-            .attr('markerHeight', 6)
-            .attr('orient', 'auto')
-            .append('svg:path')
-            .attr('d', 'M0,-5L10,0L0,5');
+        this.addToContainer(container, width, height);
 
         // add the curvy lines
         const tick = () => {
             path.attr('d', (d) => {
-                //TODO: REMOVING THIS BREAKS THE ARROWS
                 const sourceRadius = ForceDirectedGraph.SpecUtils.getNodeRadius(d.name || d.source.name),
                     targetRadius = ForceDirectedGraph.SpecUtils.getNodeRadius(d.name || d.target.name) * (d.target.type === 'decision' ? 1.5 : 1);
-                // const radius = 20 * 20; //for now, will fix sizing later
                 let deltaX = d.target.x - d.source.x,
                     deltaY = d.target.y - d.source.y,
                     dist = Math.sqrt(deltaX * deltaX + deltaY * deltaY),
@@ -112,64 +88,21 @@ export default class ForceDirectedGraph {
             node.attr('transform', function(d) {
                 return 'translate(' + d.x + ',' + d.y + ')';
             });
-
-            //TODO: add dist in here?
-            pathText.attr('transform', function(d) {
-                // let deltaX = d.target.x - d.source.x,
-                //     deltaY = d.target.y - d.source.y,
-                //     dist = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-                //TODO: why add or subtract 20?
-                // if(d.target.y > d.source.y) {
-                //     return `translate(${(d.source.x + d.target.x + 20) / 2}, ${(d.source.y + d.target.y) / 2}),
-                //     rotate(${(Math.atan((d.target.y - d.source.y) / (d.target.x - d.source.x))) * (180 / Math.PI)})`;
-                // }
-                // else{
-                //     return `translate(${(d.source.x + d.target.x - 20) / 2}, ${(d.source.y + d.target.y) / 2}),
-                //     rotate(${(Math.atan((d.target.y - d.source.y) / (d.target.x - d.source.x))) * (180 / Math.PI)})`;
-                // }
-                return `translate(${(d.source.x + d.target.x) / 2}, ${(d.source.y + d.target.y) / 2}), 
-                    rotate(${(Math.atan((d.target.y - d.source.y) / (d.target.x - d.source.x))) * (180 / Math.PI)})`;
-            });
         };
 
-        let force = d3.layout.force()
-            .nodes(d3.values(nodes))
-            .links(links)
-            .size([width, height])
-            .gravity(0.09)
-            .linkDistance(100)
-            .charge(-1000)
-            .on('tick', tick)
-            .start();
+        let force = this.buildD3Force(nodes, links, width, height, tick);
 
         // add the links and the arrows
         let path = container.append('svg:g').selectAll('path')
             .data(force.links())
             .enter()
-            .append('svg:g')
-            .attr('class', 'text')
+            // .append('svg:g')
+            // .attr('class', 'text')
             .append('svg:path')
             .attr('class', 'link')
             .attr('marker-end', 'url(#end)');
 
-        //TODO: Remove path text and make the graph color-coded
-        //add the path text
-        let pathText = container.selectAll('.text')
-            .append("text")
-            .attr("font-family", "Arial, Helvetica, sans-serif")
-            .attr("fill", "Black")
-            .style("font", "normal 8px Arial")
-            // .attr("dy", ".6em")
-            .text(function(d) {
-                return d.action;
-            });
 
-        let tip = d3.tip()
-            .attr('class', 'd3-tip')
-            .offset([-10, 0])
-            .html(function (d) {
-                return "TESTING";
-            });
 
         //TODO: what about nodes that have literally no connections? :O
         // define the nodes
@@ -209,5 +142,66 @@ export default class ForceDirectedGraph {
             .attr('dy', '.35em')
             .text(function(d) {return d.name; });
 
+    }
+
+    addToContainer(container, width, height){
+        this.buildAxes(container, width, height);
+        this.buildArrow(container);
+    }
+
+    buildAxes(container, width, height) {
+        this.buildX(container, width, height);
+        this.buildY(container, width, height);
+    }
+
+    buildX(container, width, height){
+        container.append('g')
+            .attr('class', 'x axis')
+            .selectAll('line')
+            .data(d3.range(0, width, 10))
+            .enter().append('line')
+            .attr('x1', function(d) { return d; })
+            .attr('y1', 0)
+            .attr('x2', function(d) { return d; })
+            .attr('y2', height);
+    }
+
+    buildY(container, width, height){
+        container.append('g')
+            .attr('class', 'y axis')
+            .selectAll('line')
+            .data(d3.range(0, height, 10))
+            .enter().append('line')
+            .attr('x1', 0)
+            .attr('y1', function(d) { return d; })
+            .attr('x2', width)
+            .attr('y2', function(d) { return d; });
+    }
+
+    buildArrow(container){
+        container.append('svg:defs').selectAll('marker')
+            .data(['end'])      // Different link/path types can be defined here
+            .enter().append('svg:marker')    // This section adds in the arrows
+            .attr('id', String)
+            .attr('viewBox', '0 -5 10 10')
+            .attr('refX', 15)
+            .attr('refY', -0.5)
+            .attr('markerWidth', 6)
+            .attr('markerHeight', 6)
+            .attr('orient', 'auto')
+            .append('svg:path')
+            .attr('d', 'M0,-5L10,0L0,5');
+    }
+
+    buildD3Force(nodes, links, width, height, tick){
+        return d3.layout.force()
+            .nodes(d3.values(nodes))
+            .links(links)
+            .size([width, height])
+            .gravity(0.09)
+            .linkDistance(100)
+            .charge(-1000)
+            .on('tick', tick)
+            .start();
     }
 }

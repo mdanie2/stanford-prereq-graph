@@ -88,8 +88,10 @@ export default class ForceDirectedGraph {
         // add the curvy lines
         const tick = () => {
             path.attr('d', (d) => {
+                //TODO: REMOVING THIS BREAKS THE ARROWS
                 const sourceRadius = ForceDirectedGraph.SpecUtils.getNodeRadius(d.name || d.source.name),
                     targetRadius = ForceDirectedGraph.SpecUtils.getNodeRadius(d.name || d.target.name) * (d.target.type === 'decision' ? 1.5 : 1);
+                // const radius = 20 * 20; //for now, will fix sizing later
                 let deltaX = d.target.x - d.source.x,
                     deltaY = d.target.y - d.source.y,
                     dist = Math.sqrt(deltaX * deltaX + deltaY * deltaY),
@@ -130,7 +132,7 @@ export default class ForceDirectedGraph {
             .size([width, height])
             .gravity(0.06)
             .linkDistance(150)
-            .charge(-500)
+            .charge(-6000)
             .on('tick', tick)
             .start();
 
@@ -177,20 +179,22 @@ export default class ForceDirectedGraph {
             .on("mouseout", tip.hide);
 
         node.each(function(d) {
-            if (d.type === 'decision') {
-                d3.select(this).append('path')
-                    .attr('class', 'nodeShape')
-                    .attr('transform', 'rotate(-45)')
-                    .attr('d', d3.svg.symbol()
-                        .size((d) => { return ForceDirectedGraph.SpecUtils.getNodeRadius(d.name) * 80; })
-                        .type((d) => { return d.type == 'decision' ? 'square' : 'circle'; }));
-            } else {
+            // if (d.type === 'decision') {
+            //     d3.select(this).append('path')
+            //         .attr('class', 'nodeShape')
+            //         .attr('transform', 'rotate(-45)')
+            //         .attr('d', d3.svg.symbol()
+            //             .size((d) => { return ForceDirectedGraph.SpecUtils.getNodeRadius(d.name) * 20; })
+            //             .type((d) => { return d.type == 'decision' ? 'square' : 'circle'; }));
+            // } else {
+            //TODO: Fix sizing
                 d3.select(this).append('circle')
                     .attr('class', 'nodeShape')
+                    // .attr('r', 20);
                     .attr('r', (d) => {
                         return ForceDirectedGraph.SpecUtils.getNodeRadius(d.name);
                     });
-            }
+            // }
         });
 
         // add the text

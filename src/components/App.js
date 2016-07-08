@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Graph from './Graph';
-import {CSSpec} from '../utils/CSSpec';
+import {CSSpec} from '../utils/CSSpecv2';
 
 export default class App extends Component {
   render() {

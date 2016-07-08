@@ -13,8 +13,12 @@ export const CSSpec = {
                 {
                     "action": "prereq",
                     "to": "CS106B"
+                },
+                {
+                    "action": "excellence in 106A",
+                    "to": "CS106X"
                 }
-            ],
+            ]
         },
         {
             "name": "CS103",
@@ -44,6 +48,31 @@ export const CSSpec = {
                 {
                     "action": "prereq",
                     "to": "CS107"
+                },
+                {
+                    "action": "prereq",
+                    "to": "CS109"
+                },
+                {
+                    "action": "OR",
+                    "to": "CS106X"
+                }
+            ]
+        },
+        {
+            "name": "CS106X",
+            "transitions": [
+                {
+                    "action": "prereq",
+                    "to": "CS107"
+                },
+                {
+                    "action": "prereq",
+                    "to": "CS109"
+                },
+                {
+                    "action": "OR",
+                    "to": "CS106B"
                 }
             ]
         },
@@ -63,4 +92,6 @@ export const CSSpec = {
             ]
         }
     ]
-}
+}/**
+ * Created by mdaniel on 7/7/16.
+ */

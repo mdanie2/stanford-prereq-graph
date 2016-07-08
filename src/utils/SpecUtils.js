@@ -1,9 +1,9 @@
 export default class SpecUtils {
 
-    constructor(spec, radiusScalar) {
+    constructor(spec, radius) {
         this.spec = spec;
         this.graph = this.specTransformer(this.spec);
-        this.radiusScalar = radiusScalar;
+        this.radius = radius;
         this.nodeSize = this.cacheNodeConnections();
     }
 
@@ -20,7 +20,7 @@ export default class SpecUtils {
                 'type': item.type || 'view',
                 'meta': {
                     'url': item.url,
-                    'state': item.state,
+                    'state': item.state
                 },
                 'links': this.resolveTransitions(item, item.transitions)
             });

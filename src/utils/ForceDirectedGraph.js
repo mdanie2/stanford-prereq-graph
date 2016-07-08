@@ -5,11 +5,12 @@ export default class ForceDirectedGraph {
 
     static SpecUtils;
 
-    constructor(spec, radiusScalar) {
-        ForceDirectedGraph.SpecUtils = new SpecUtils(spec, radiusScalar);
+    constructor(spec, radius) {
+        ForceDirectedGraph.SpecUtils = new SpecUtils(spec, radius);
     }
 
     buildBidirectionalGraph() {
+        let radius = ForceDirectedGraph.SpecUtils.radius;
         let nodes = {};
         const links = ForceDirectedGraph.SpecUtils.getD3Links(this.graph);
         // Compute the distinct nodes from the links.
@@ -97,8 +98,10 @@ export default class ForceDirectedGraph {
                     dist = Math.sqrt(deltaX * deltaX + deltaY * deltaY),
                     normX = deltaX / dist,
                     normY = deltaY / dist,
-                    sourcePadding = d.left ? sourceRadius + 15 : sourceRadius - 5,
-                    targetPadding = d.right ? targetRadius + 15 : targetRadius - 5,
+                    // sourcePadding = d.left ? sourceRadius + 15 : sourceRadius - 5,
+                    // targetPadding = d.right ? targetRadius + 15 : targetRadius - 5,
+                    sourcePadding = d.left ? radius + 15 : radius - 5,
+                    targetPadding = d.right ? radius + 15 : radius - 5,
                     sourceX = d.source.x + (sourcePadding * normX),
                     sourceY = d.source.y + (sourcePadding * normY),
                     targetX = d.target.x - (targetPadding * normX),
@@ -115,14 +118,17 @@ export default class ForceDirectedGraph {
                 // let deltaX = d.target.x - d.source.x,
                 //     deltaY = d.target.y - d.source.y,
                 //     dist = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-                if(d.target.y > d.source.y) {
-                    return `translate(${(d.source.x + d.target.x + 20) / 2}, ${(d.source.y + d.target.y) / 2}), 
+                //TODO: why add or subtract 20?
+                // if(d.target.y > d.source.y) {
+                //     return `translate(${(d.source.x + d.target.x + 20) / 2}, ${(d.source.y + d.target.y) / 2}),
+                //     rotate(${(Math.atan((d.target.y - d.source.y) / (d.target.x - d.source.x))) * (180 / Math.PI)})`;
+                // }
+                // else{
+                //     return `translate(${(d.source.x + d.target.x - 20) / 2}, ${(d.source.y + d.target.y) / 2}),
+                //     rotate(${(Math.atan((d.target.y - d.source.y) / (d.target.x - d.source.x))) * (180 / Math.PI)})`;
+                // }
+                return `translate(${(d.source.x + d.target.x) / 2}, ${(d.source.y + d.target.y) / 2}), 
                     rotate(${(Math.atan((d.target.y - d.source.y) / (d.target.x - d.source.x))) * (180 / Math.PI)})`;
-                }
-                else{
-                    return `translate(${(d.source.x + d.target.x - 20) / 2}, ${(d.source.y + d.target.y) / 2}), 
-                    rotate(${(Math.atan((d.target.y - d.source.y) / (d.target.x - d.source.x))) * (180 / Math.PI)})`;
-                }
             });
         };
 
@@ -130,9 +136,9 @@ export default class ForceDirectedGraph {
             .nodes(d3.values(nodes))
             .links(links)
             .size([width, height])
-            .gravity(0.06)
-            .linkDistance(150)
-            .charge(-6000)
+            .gravity(0.09)
+            .linkDistance(100)
+            .charge(-1000)
             .on('tick', tick)
             .start();
 
@@ -146,7 +152,8 @@ export default class ForceDirectedGraph {
             .attr('class', 'link')
             .attr('marker-end', 'url(#end)');
 
-        //ad the path text
+        //TODO: Remove path text and make the graph color-coded
+        //add the path text
         let pathText = container.selectAll('.text')
             .append("text")
             .attr("font-family", "Arial, Helvetica, sans-serif")
@@ -164,7 +171,7 @@ export default class ForceDirectedGraph {
                 return "TESTING";
             });
 
-
+        //TODO: what about nodes that have literally no connections? :O
         // define the nodes
         let node = container.selectAll('.node')
             .data(force.nodes())
@@ -190,10 +197,10 @@ export default class ForceDirectedGraph {
             //TODO: Fix sizing
                 d3.select(this).append('circle')
                     .attr('class', 'nodeShape')
-                    // .attr('r', 20);
-                    .attr('r', (d) => {
-                        return ForceDirectedGraph.SpecUtils.getNodeRadius(d.name);
-                    });
+                    .attr('r', radius);
+                    // .attr('r', (d) => {
+                    //     return ForceDirectedGraph.SpecUtils.getNodeRadius(d.name);
+                    // });
             // }
         });
 

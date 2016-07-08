@@ -46,36 +46,30 @@ export default class ForceDirectedGraph {
             .attr('transform', 'translate(' + margin.left + ',' + margin.right + ')')
             .call(zoom);
 
-        //TODO: Seems uneeded. remove?
-        // let rect = svg.append('rect')
-        //     .attr('width', width)
-        //     .attr('height', height)
-        //     .style('fill', 'none')
-        //     .style('pointer-events', 'all');
+        //TODO: Seems uneeded. remove? maybe use later
+        let rect = svg.append('rect')
+            .attr('width', width)
+            .attr('height', height)
+            .style('fill', 'none')
+            .style('pointer-events', 'all');
 
         let tip = d3.tip()
             .attr('class', 'd3-tip')
             .offset([-10, 0])
             .html(function (d) {
-                return "TESTING";
+                return d.name;
             });
 
-        let container = svg.append('g');
 
-        this.addToContainer(container, width, height);
 
         // add the curvy lines
         const tick = () => {
             path.attr('d', (d) => {
-                const sourceRadius = ForceDirectedGraph.SpecUtils.getNodeRadius(d.name || d.source.name),
-                    targetRadius = ForceDirectedGraph.SpecUtils.getNodeRadius(d.name || d.target.name) * (d.target.type === 'decision' ? 1.5 : 1);
                 let deltaX = d.target.x - d.source.x,
                     deltaY = d.target.y - d.source.y,
                     dist = Math.sqrt(deltaX * deltaX + deltaY * deltaY),
                     normX = deltaX / dist,
                     normY = deltaY / dist,
-                    // sourcePadding = d.left ? sourceRadius + 15 : sourceRadius - 5,
-                    // targetPadding = d.right ? targetRadius + 15 : targetRadius - 5,
                     sourcePadding = d.left ? radius + 15 : radius - 5,
                     targetPadding = d.right ? radius + 15 : radius - 5,
                     sourceX = d.source.x + (sourcePadding * normX),
@@ -90,58 +84,32 @@ export default class ForceDirectedGraph {
             });
         };
 
+        let container = svg.append('g'); //contains all paths and nodes
+        this.addToContainer(container, width, height); //make sure this is always added before the path and nodes
+
         let force = this.buildD3Force(nodes, links, width, height, tick);
-
-        // add the links and the arrows
-        let path = container.append('svg:g').selectAll('path')
-            .data(force.links())
-            .enter()
-            // .append('svg:g')
-            // .attr('class', 'text')
-            .append('svg:path')
-            .attr('class', 'link')
-            .attr('marker-end', 'url(#end)');
-
-
+        let path = this.buildPath(container, force);
 
         //TODO: what about nodes that have literally no connections? :O
-        // define the nodes
-        let node = container.selectAll('.node')
-            .data(force.nodes())
-            .enter()
-            .append('svg:g')
-            .attr('class', 'node');
+        let node = this.buildNode(container, force);
+        this.addNodeAttributes(node, radius);
 
-        container.selectAll('.node').call(tip);
+        this.addToolTip(container, tip);
 
-        container.selectAll('.node')
-            .on("mouseover", tip.show)
-            .on("mouseout", tip.hide);
+    }
 
+    addNodeAttributes(node, radius){
         node.each(function(d) {
-            // if (d.type === 'decision') {
-            //     d3.select(this).append('path')
-            //         .attr('class', 'nodeShape')
-            //         .attr('transform', 'rotate(-45)')
-            //         .attr('d', d3.svg.symbol()
-            //             .size((d) => { return ForceDirectedGraph.SpecUtils.getNodeRadius(d.name) * 20; })
-            //             .type((d) => { return d.type == 'decision' ? 'square' : 'circle'; }));
-            // } else {
             //TODO: Fix sizing
-                d3.select(this).append('circle')
-                    .attr('class', 'nodeShape')
-                    .attr('r', radius);
-                    // .attr('r', (d) => {
-                    //     return ForceDirectedGraph.SpecUtils.getNodeRadius(d.name);
-                    // });
-            // }
+            d3.select(this).append('circle')
+                .attr('class', 'nodeShape')
+                .attr('r', radius);
         });
 
         // add the text
         node.append('text')
             .attr('dy', '.35em')
             .text(function(d) {return d.name; });
-
     }
 
     addToContainer(container, width, height){
@@ -149,10 +117,72 @@ export default class ForceDirectedGraph {
         this.buildArrow(container);
     }
 
+    addToolTip(container, tip){
+        container.selectAll('.node').call(tip);
+
+        container.selectAll('.node')
+            .on("mouseover", tip.show)
+            .on("mouseout", tip.hide);
+    }
+
+    /////////////////////
+    // Builder Methods //
+    /////////////////////
+
+    buildArrow(container){
+        container.append('svg:defs').selectAll('marker')
+            .data(['end'])      // Different link/path types can be defined here
+            .enter().append('svg:marker')    // This section adds in the arrows
+            .attr('id', String)
+            .attr('viewBox', '0 -5 10 10')
+            .attr('refX', 15)
+            .attr('refY', -0.5)
+            .attr('markerWidth', 6)
+            .attr('markerHeight', 6)
+            .attr('orient', 'auto')
+            .append('svg:path')
+            .attr('d', 'M0,-5L10,0L0,5');
+    }
+
     buildAxes(container, width, height) {
         this.buildX(container, width, height);
         this.buildY(container, width, height);
     }
+
+    buildD3Force(nodes, links, width, height, tick){
+        return d3.layout.force()
+            .nodes(d3.values(nodes))
+            .links(links)
+            .size([width, height])
+            .gravity(0.09)
+            .linkDistance(100)
+            .charge(-1000)
+            .on('tick', tick)
+            .start();
+    }
+
+    buildNode(container, force){
+        // define the nodes
+        return container.selectAll('.node')
+            .data(force.nodes())
+            .enter()
+            .append('svg:g')
+            .attr('class', 'node');
+    }
+
+    buildPath(container, force){
+        //adds links and arrows
+        return container.append('svg:g').selectAll('path')
+            .data(force.links())
+            .enter()
+            //the below is if we want to add text to the link
+            // .append('svg:g')
+            // .attr('class', 'text')
+            .append('svg:path')
+            .attr('class', 'link')
+            .attr('marker-end', 'url(#end)');
+    }
+
 
     buildX(container, width, height){
         container.append('g')
@@ -178,30 +208,4 @@ export default class ForceDirectedGraph {
             .attr('y2', function(d) { return d; });
     }
 
-    buildArrow(container){
-        container.append('svg:defs').selectAll('marker')
-            .data(['end'])      // Different link/path types can be defined here
-            .enter().append('svg:marker')    // This section adds in the arrows
-            .attr('id', String)
-            .attr('viewBox', '0 -5 10 10')
-            .attr('refX', 15)
-            .attr('refY', -0.5)
-            .attr('markerWidth', 6)
-            .attr('markerHeight', 6)
-            .attr('orient', 'auto')
-            .append('svg:path')
-            .attr('d', 'M0,-5L10,0L0,5');
-    }
-
-    buildD3Force(nodes, links, width, height, tick){
-        return d3.layout.force()
-            .nodes(d3.values(nodes))
-            .links(links)
-            .size([width, height])
-            .gravity(0.09)
-            .linkDistance(100)
-            .charge(-1000)
-            .on('tick', tick)
-            .start();
-    }
 }

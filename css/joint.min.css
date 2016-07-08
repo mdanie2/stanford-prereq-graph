@@ -5,27 +5,35 @@ License, v. 2.0. If a copy of the MPL was not distributed with this
 file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
  path.link {
-   fill: none;
-   stroke: #666;
-   stroke-width: 1.5px;
+
+     fill: none;
+     stroke: #666;
+     stroke-width: 1.5px;
  }
 
  .nodeShape {
-   fill: #ccc;
-   stroke: #fff;
-   stroke-width: 1.5px;
+   /*fill: #bd2031;*/
+     fill: #ccc;
+     stroke: #fff;
+     stroke-width: 1.5px;
  }
 
  text {
-   fill: #000;
-   font: 10px sans-serif;
-   pointer-events: none;
-   text-anchor: middle;
+   /*fill: #eeefff;*/
+     fill: #000;
+     font: 10px sans-serif;
+     pointer-events: none;
+     text-anchor: middle;
  }
 
  .axis line {
-  fill: none;
-  stroke: #ddd;
-  shape-rendering: crispEdges;
-  vector-effect: non-scaling-stroke;
+     fill: none;
+     stroke: #ddd;
+     shape-rendering: crispEdges;
+     vector-effect: non-scaling-stroke;
 }
+
+ .d3-tip{
+     z-index: 10;
+     opacity: 0.0;
+ }

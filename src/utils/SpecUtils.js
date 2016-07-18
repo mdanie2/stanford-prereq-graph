@@ -76,7 +76,7 @@ export default class SpecUtils {
                 'd3': {
                     'source': node.name,
                     'target': item.escalate ? parentNode.name : item.to,
-                    'type': node.type,
+                    'type': node.id || 'noType',
                     'action': item.action ? item.action : item.attribute + ' = ' + item.value.toString()
                 }
             });
@@ -87,7 +87,7 @@ export default class SpecUtils {
                         'd3': {
                             'source': node.name,
                             'target': node.childSpec.metadata.enter,
-                            'type': undefined,
+                            'type': node.id || 'noType',
                             'action': undefined
                         }
                     }); //action undefined for now

@@ -5,10 +5,12 @@ export const CSSpec = {
     "navSpecs": [
         {
             "name": "CS181W",
+            "id": "starter",
             "transitions": []
         },
         {
             "name": "CS106A",
+            "id": "starter",
             "transitions": [
                 {
                     "action": "prereq",
@@ -26,6 +28,7 @@ export const CSSpec = {
         },
         {
             "name": "CS103",
+            "id": "",
             "transitions": [
                 {
                     "action": "soft prereq",
@@ -39,6 +42,7 @@ export const CSSpec = {
         },
         {
             "name": "CS109",
+            "id": "",
             "transitions": [
                 {
                     "action": "prereq",
@@ -48,6 +52,7 @@ export const CSSpec = {
         },
         {
             "name": "CS106B",
+            "id": "",
             "transitions": [
                 {
                     "action": "prereq",
@@ -69,6 +74,7 @@ export const CSSpec = {
         },
         {
             "name": "CS106X",
+            "id": "",
             "transitions": [
                 {
                     "action": "prereq",
@@ -90,6 +96,7 @@ export const CSSpec = {
         },
         {
             "name": "CS107",
+            "id": "",
             "transitions": [
                 {
                     "action": "prereq",
@@ -103,10 +110,12 @@ export const CSSpec = {
         },
         {
             "name": "CS110",
+            "id": "",
             "transitions": []
         },
         {
             "name": "CS107E",
+            "id": "",
             "transitions": [
                 {
                     "action": "prereq",

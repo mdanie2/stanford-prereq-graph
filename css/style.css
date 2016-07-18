@@ -12,10 +12,17 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
  }
 
  .nodeShape {
-   /*fill: #bd2031;*/
-     fill: #ccc;
      stroke: #fff;
      stroke-width: 1.5px;
+ }
+
+ .starter{
+   fill: #ff0000;
+ }
+
+ .noType{
+   /*fill: #bd2031;*/
+   fill: #ccc;
  }
 
  text {

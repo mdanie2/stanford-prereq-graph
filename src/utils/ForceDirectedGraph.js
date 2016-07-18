@@ -97,11 +97,17 @@ export default class ForceDirectedGraph {
 
     }
 
+    /////////////////////
+    //Attribute Methods//
+    /////////////////////
+
     addNodeAttributes(node, radius){
         node.each(function(d) {
             //TODO: Fix sizing
             d3.select(this).append('circle')
-                .attr('class', 'nodeShape')
+                .attr('class', function(d){
+                  return 'nodeShape' + ' ' + d.type;
+                })
                 .attr('r', radius);
         });
 

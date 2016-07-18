@@ -105,9 +105,10 @@ export default class ForceDirectedGraph {
         node.each(function(d) {
             //TODO: Fix sizing
             d3.select(this).append('circle')
-                .attr('class', function(d){
-                  return 'nodeShape' + ' ' + d.type;
-                })
+                // .attr('class', function(d){
+                //   return 'nodeShape' + ' ' + d.type;
+                // })
+                .attr('class', 'nodeShape')
                 .attr('r', radius);
         });
 
@@ -172,7 +173,10 @@ export default class ForceDirectedGraph {
             .data(force.nodes())
             .enter()
             .append('svg:g')
-            .attr('class', 'node');
+            .attr('class', function(d){
+              debugger;
+              return 'node ' + d.type;
+            });
     }
 
     buildPath(container, force){

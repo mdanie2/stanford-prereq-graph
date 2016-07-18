@@ -25,6 +25,10 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
    fill: #ccc;
  }
 
+ .invisible{
+   visibility: hidden;
+ }
+
  text {
    /*fill: #eeefff;*/
      fill: #000;

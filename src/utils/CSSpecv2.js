@@ -4,8 +4,22 @@ export const CSSpec = {
     },
     "navSpecs": [
         {
+            "name": "starter",
+            "id": "invisible",
+            "transitions": [
+                {
+                    "action": "connector",
+                    "to": "CS181W"
+                },
+                {
+                    "action": "connector",
+                    "to": "CS106A"
+                }
+            ]
+        },
+        {
             "name": "CS181W",
-            "id": "starter",
+            "id": "",
             "transitions": []
         },
         {

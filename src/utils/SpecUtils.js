@@ -17,7 +17,7 @@ export default class SpecUtils {
         return spec.reduce((accum, item) => {
             accum.push({
                 'name': item.name,
-                'type': item.type || 'view',
+                'type': item.id || 'noType',
                 'meta': {
                     'url': item.url,
                     'state': item.state
@@ -77,6 +77,8 @@ export default class SpecUtils {
                     'source': node.name,
                     'target': item.escalate ? parentNode.name : item.to,
                     'type': node.id || 'noType',
+                    // 'sType': node.id || 'noType',
+                    // 'tType': '',
                     'action': item.action ? item.action : item.attribute + ' = ' + item.value.toString()
                 }
             });

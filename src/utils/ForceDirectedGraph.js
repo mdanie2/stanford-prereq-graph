@@ -24,8 +24,10 @@ export default class ForceDirectedGraph {
             } else {
                 link.source = nodes[link.source] = {name: link.source, type: link.type};
             }
+            //problem is here
             link.target = nodes[link.target] || (nodes[link.target] = {name: link.target, type: link.type});
         });
+
 
         const width = window.innerWidth,
             height = window.innerHeight,
@@ -174,7 +176,6 @@ export default class ForceDirectedGraph {
             .enter()
             .append('svg:g')
             .attr('class', function(d){
-              debugger;
               return 'node ' + d.type;
             });
     }
@@ -188,7 +189,9 @@ export default class ForceDirectedGraph {
             // .append('svg:g')
             // .attr('class', 'text')
             .append('svg:path')
-            .attr('class', 'link')
+            .attr('class', function(d){
+              return 'link ' + d.action;
+            })
             .attr('marker-end', 'url(#end)');
     }
 

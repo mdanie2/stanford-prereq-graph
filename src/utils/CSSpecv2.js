@@ -20,12 +20,21 @@ export const CSSpec = {
         {
             "name": "CS181W",
             "id": "",
-            "transitions": []
+            "transitions": [
+                {
+                    "action": "connector",
+                    "to": "starter"
+                }
+            ]
         },
         {
             "name": "CS106A",
             "id": "starter",
             "transitions": [
+                {
+                    "action": "connector",
+                    "to": "starter"
+                },
                 {
                     "action": "prereq",
                     "to": "CS103"
@@ -81,7 +90,7 @@ export const CSSpec = {
                     "to": "CS109"
                 },
                 {
-                    "action": "OR",
+                    "action": "or",
                     "to": "CS106X"
                 }
             ]
@@ -99,7 +108,7 @@ export const CSSpec = {
                     "to": "CS109"
                 },
                 {
-                    "action": "OR",
+                    "action": "or",
                     "to": "CS106B"
                 },
                 {
@@ -117,7 +126,7 @@ export const CSSpec = {
                     "to": "CS110"
                 },
                 {
-                    "action": "OR",
+                    "action": "or",
                     "to": "CS107E"
                 }
             ]
@@ -136,7 +145,7 @@ export const CSSpec = {
                     "to": "CS110"
                 },
                 {
-                    "action": "OR",
+                    "action": "or",
                     "to": "CS107"
                 }
             ]

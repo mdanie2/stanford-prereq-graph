@@ -75,7 +75,7 @@ export const CSSpec = {
         },
         {
             "name": "CS106B",
-            "id": "",
+            "id": "or",
             "transitions": [
                 {
                     "action": "prereq",
@@ -97,7 +97,7 @@ export const CSSpec = {
         },
         {
             "name": "CS106X",
-            "id": "",
+            "id": "or",
             "transitions": [
                 {
                     "action": "prereq",
@@ -119,7 +119,7 @@ export const CSSpec = {
         },
         {
             "name": "CS107",
-            "id": "",
+            "id": "or",
             "transitions": [
                 {
                     "action": "prereq",
@@ -138,7 +138,7 @@ export const CSSpec = {
         },
         {
             "name": "CS107E",
-            "id": "",
+            "id": "or",
             "transitions": [
                 {
                     "action": "prereq",

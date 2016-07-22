@@ -72,29 +72,18 @@ export default class SpecUtils {
      */
     resolveTransitions(node, transitions, parentNode) {
         return transitions.reduce((accum, item) => {
+
             accum.push({
                 'd3': {
                     'source': node.name,
                     'target': item.escalate ? parentNode.name : item.to,
                     'type': node.id || 'noType',
-                    // 'sType': node.id || 'noType',
-                    // 'tType': '',
+                    //EITHER USE LODASH OR sourceType/toType
+                    // 'sourceType': node.id || 'noType',
+                    // 'toType': item.toType || 'noType',
                     'action': item.action ? item.action : item.attribute + ' = ' + item.value.toString()
                 }
             });
-            if (node.childSpec) {
-                node.childSpec.navSpec.map((item) => {
-                    accum = accum.concat(this.resolveTransitions(item, item.transitions, node));
-                    accum.push({
-                        'd3': {
-                            'source': node.name,
-                            'target': node.childSpec.metadata.enter,
-                            'type': node.id || 'noType',
-                            'action': undefined
-                        }
-                    }); //action undefined for now
-                });
-            }
             return accum;
         }, []);
     }

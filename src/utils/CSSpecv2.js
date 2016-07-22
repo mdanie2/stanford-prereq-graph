@@ -4,16 +4,18 @@ export const CSSpec = {
     },
     "navSpecs": [
         {
-            "name": "starter",
+            "name": "connectingNode",
             "id": "invisible",
             "transitions": [
                 {
                     "action": "connector",
-                    "to": "CS181W"
+                    "to": "CS181W",
+                    "toType": ""
                 },
                 {
                     "action": "connector",
-                    "to": "CS106A"
+                    "to": "CS106A",
+                    "toType": "starter"
                 }
             ]
         },
@@ -23,7 +25,7 @@ export const CSSpec = {
             "transitions": [
                 {
                     "action": "connector",
-                    "to": "starter"
+                    "to": "connectingNode"
                 }
             ]
         },
@@ -33,7 +35,7 @@ export const CSSpec = {
             "transitions": [
                 {
                     "action": "connector",
-                    "to": "starter"
+                    "to": "connectingNode"
                 },
                 {
                     "action": "prereq",

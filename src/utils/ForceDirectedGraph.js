@@ -1,5 +1,5 @@
 import SpecUtils from './SpecUtils';
-import _ from 'lodash';
+// import _ from 'lodash';
 
 export default class ForceDirectedGraph {
 
@@ -163,8 +163,8 @@ export default class ForceDirectedGraph {
             .links(links)
             .size([width, height])
             .gravity(0.09)
-            .linkDistance(100)
-            .charge(-1000)
+            .linkDistance(75)
+            .charge(-500)
             .on('tick', tick)
             .start();
     }

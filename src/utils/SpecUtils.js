@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export default class SpecUtils {
 
     constructor(spec, radius) {
@@ -71,8 +73,8 @@ export default class SpecUtils {
      * @return {[type]}             [description]
      */
     resolveTransitions(node, transitions, parentNode) {
+      // let rand = _.get(this.spec[0], 'id'); === invisible
         return transitions.reduce((accum, item) => {
-
             accum.push({
                 'd3': {
                     'source': node.name,

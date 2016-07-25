@@ -57,22 +57,22 @@ Developer
 
 BUGS
 ----------------------------------------------
--tool tip does not work when you enter fool screen (GC)
-  -seems to work again when you click the tab?
+* tool tip does not work when you enter fool screen (GC)
+  * seems to work again when you click the tab?
 
 
 ADDITIONS
 ----------------------------------------------
--Make "starter" node smaller radius
--Make "connector" links smaller and invisible
--Make starting nodes different color/size/shape
--Color coded graph
--key
--toolbar on the bottom for key, refresh, etc.
--web parser??
+* Make "starter" node smaller radius
+* Make "connector" links smaller and invisible
+* Make starting nodes different color/size/shape
+* Color coded graph
+* key
+* toolbar on the bottom for key, refresh, etc.
+* web parser??
 
 NOTES
 ----------------------------------------------
--if a node doesn't connect to anything initially, I should have a bidirectional connection to a starter node
-  -update to ForceDirectedGraph can fix that
--if using lodash, maybe store the array num inside of each item? or just us toType/fromType?
+* if a node doesn't connect to anything initially, I should have a bidirectional connection to a starter node
+  * update to ForceDirectedGraph can fix that
+* if using lodash, maybe store the array num inside of each item? or just us toType/fromType?

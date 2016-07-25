@@ -50,4 +50,5 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
  .d3-tip{
      z-index: 10;
      opacity: 0.0;
+     background: rgba(255, 255, 255, 0.8);
  }

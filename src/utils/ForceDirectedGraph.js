@@ -59,7 +59,7 @@ export default class ForceDirectedGraph {
             .attr('class', 'd3-tip')
             .offset([-10, 0])
             .html(function (d) {
-                return d.name;
+                return d.description ? d.description : d.name;
             });
 
 

@@ -50,3 +50,29 @@ This boilerplate is purposefully simple to show the minimal configuration for Re
 * [Integrating JSX live reload into your workflow](http://gaearon.github.io/react-hot-loader/getstarted/)
 * [Troubleshooting guide](https://github.com/gaearon/react-hot-loader/blob/master/docs/Troubleshooting.md)
 * Ping dan_abramov on Twitter or #reactjs IRC
+
+
+Developer
+==============================================
+
+BUGS
+----------------------------------------------
+* tool tip does not work when you enter fool screen (GC)
+  * seems to work again when you click the tab?
+
+
+ADDITIONS
+----------------------------------------------
+* Make "starter" node smaller radius
+* Make "connector" links smaller and invisible
+* Make starting nodes different color/size/shape
+* Color coded graph
+* key
+* toolbar on the bottom for key, refresh, etc.
+* web parser??
+
+NOTES
+----------------------------------------------
+* if a node doesn't connect to anything initially, I should have a bidirectional connection to a starter node
+  * update to ForceDirectedGraph can fix that
+* if using lodash, maybe store the array num inside of each item? or just us toType/fromType?

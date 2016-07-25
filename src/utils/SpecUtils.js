@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export default class SpecUtils {
 
     constructor(spec, radius) {
@@ -17,7 +19,7 @@ export default class SpecUtils {
         return spec.reduce((accum, item) => {
             accum.push({
                 'name': item.name,
-                'type': item.type || 'view',
+                'type': item.id || 'noType',
                 'meta': {
                     'url': item.url,
                     'state': item.state
@@ -54,9 +56,9 @@ export default class SpecUtils {
     cacheNodeConnections() {
         let numOfConnections = {};
         this.graph.map((node) => {
+            //TODO: This still doesn't add nodes with no connections to the graph
+            numOfConnections[node.name] = numOfConnections[node.name] ? numOfConnections[node.name] : 1; //every node is connected to itself
             node.links.map((link) => {
-                numOfConnections[link.d3.source] = numOfConnections[link.d3.source] ?
-                    numOfConnections[link.d3.source] : 1; //ensures nodes with no connections will have a node radius
                 numOfConnections[link.d3.target] = numOfConnections[link.d3.target] ? numOfConnections[link.d3.target] + 1 : 1;
             });
         });
@@ -71,28 +73,19 @@ export default class SpecUtils {
      * @return {[type]}             [description]
      */
     resolveTransitions(node, transitions, parentNode) {
+      // let rand = _.get(this.spec[0], 'id'); === invisible
         return transitions.reduce((accum, item) => {
             accum.push({
                 'd3': {
                     'source': node.name,
                     'target': item.escalate ? parentNode.name : item.to,
-                    'type': node.type,
+                    'type': node.id || 'noType',
+                    //EITHER USE LODASH OR sourceType/toType
+                    // 'sourceType': node.id || 'noType',
+                    // 'toType': item.toType || 'noType',
                     'action': item.action ? item.action : item.attribute + ' = ' + item.value.toString()
                 }
             });
-            if (node.childSpec) {
-                node.childSpec.navSpec.map((item) => {
-                    accum = accum.concat(this.resolveTransitions(item, item.transitions, node));
-                    accum.push({
-                        'd3': {
-                            'source': node.name,
-                            'target': node.childSpec.metadata.enter,
-                            'type': undefined,
-                            'action': undefined
-                        }
-                    }); //action undefined for now
-                });
-            }
             return accum;
         }, []);
     }

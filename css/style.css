@@ -1,0 +1,54 @@
+/*! JointJS v0.9.6 - JavaScript diagramming library  2015-12-19
+
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+ path.link {
+     fill: none;
+     stroke: #666;
+     stroke-width: 1.5px;
+ }
+
+ .connector{
+   visibility: hidden;
+ }
+
+ .nodeShape {
+     stroke: #fff;
+     stroke-width: 1.5px;
+ }
+
+ .starter{
+   fill: #ff0000;
+ }
+
+ .or, .noType{
+   /*fill: #bd2031;*/
+   fill: #ccc;
+ }
+
+ .invisible{
+   visibility: hidden;
+ }
+
+ text {
+   /*fill: #eeefff;*/
+     fill: #000;
+     font: 8px sans-serif;
+     pointer-events: none;
+     text-anchor: middle;
+ }
+
+ .axis line {
+     fill: none;
+     stroke: #ddd;
+     shape-rendering: crispEdges;
+     vector-effect: non-scaling-stroke;
+}
+
+ .d3-tip{
+     z-index: 10;
+     opacity: 0.0;
+     background: rgba(255, 255, 255, 0.8);
+ }

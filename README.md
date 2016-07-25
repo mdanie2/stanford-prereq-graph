@@ -52,7 +52,8 @@ This boilerplate is purposefully simple to show the minimal configuration for Re
 * Ping dan_abramov on Twitter or #reactjs IRC
 
 
-### Developer
+Developer
+==============================================
 
 BUGS
 ----------------------------------------------

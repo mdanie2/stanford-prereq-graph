@@ -18,16 +18,15 @@ export default class ForceDirectedGraph {
         links.forEach(function(link) {
             if (nodes[link.source]) {
                 link.source = nodes[link.source];
-                if (link.type && !_.get(nodes[link.source], 'type')) {
-                    nodes[link.source.name].type = link.type;
+                if (link.sourceType && !_.get(nodes[link.source], 'type')) {
+                    nodes[link.source.name].type = link.sourceType;
                 }
             } else {
-                link.source = nodes[link.source] = {name: link.source, type: link.type};
+                link.source = nodes[link.source] = {name: link.source, type: link.sourceType};
             }
             //problem is here
-            link.target = nodes[link.target] || (nodes[link.target] = {name: link.target, type: link.type});
+            link.target = nodes[link.target] || (nodes[link.target] = {name: link.target, type: link.toType});
         });
-
 
         const width = window.innerWidth,
             height = window.innerHeight,

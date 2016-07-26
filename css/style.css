@@ -23,7 +23,10 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
    fill: #ff0000;
  }
 
- .or, .noType{
+ .or{
+   fill: #ff00ff;
+ }
+ .noType{
    /*fill: #bd2031;*/
    fill: #ccc;
  }

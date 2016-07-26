@@ -5,13 +5,14 @@ export const CSSpec = {
     "navSpecs": [
         {
             "name": "connectingNode",
+            "url": "",
             "id": "invisible",
-            "description": "",
+            "description": "This is a test description and should be treated as such.",
             "transitions": [
                 {
                     "action": "connector",
-                    "to": "CS181W",
-                    "toType": ""
+                    "to": "WIM",
+                    "toType": "starter"
                 },
                 {
                     "action": "connector",
@@ -21,19 +22,15 @@ export const CSSpec = {
                 {
                     "action": "connector",
                     "to": "MATH19",
-                    "toType": ""
+                    "toType": "starter"
                 }
             ]
         },
         {
             "name": "MATH19",
             "id": "starter",
-            "description": "",
+            "description": "This is a test description and should be treated as such.",
             "transitions": [
-                {
-                    "action": "connector",
-                    "to": "connectingNode"
-                },
                 {
                     "action": "prereq",
                     "to": "MATH20"
@@ -43,7 +40,7 @@ export const CSSpec = {
         {
             "name": "MATH20",
             "id": "",
-            "description": "",
+            "description": "This is a test description and should be treated as such.",
             "transitions": [
                 {
                     "action": "prereq",
@@ -54,7 +51,7 @@ export const CSSpec = {
         {
             "name": "MATH21",
             "id": "",
-            "description": "",
+            "description": "This is a test description and should be treated as such.",
             "transitions": [
                 {
                     "action": "prereq",
@@ -65,13 +62,13 @@ export const CSSpec = {
         {
             "name": "ENGR40M",
             "id": "",
-            "description": "",
+            "description": "This is a test description and should be treated as such.",
             "transitions": []
         },
         {
             "name": "PHYSICS41",
             "id": "",
-            "description": "",
+            "description": "This is a test description and should be treated as such.",
             "transitions": [
                 {
                     "action": "prereq",
@@ -82,29 +79,20 @@ export const CSSpec = {
         {
             "name": "PHYSICS43",
             "id": "",
-            "description": "",
+            "description": "This is a test description and should be treated as such.",
             "transitions": []
         },
         {
-            "name": "CS181W",
-            "id": "",
-            "description": "",
-            "transitions": [
-                {
-                    "action": "connector",
-                    "to": "connectingNode"
-                }
-            ]
+            "name": "WIM",
+            "id": "starter",
+            "description": "This is a test description and should be treated as such.",
+            "transitions": []
         },
         {
             "name": "CS106A",
             "id": "starter",
             "description": "This is a test description and should be treated as such.",
             "transitions": [
-                {
-                    "action": "connector",
-                    "to": "connectingNode"
-                },
                 {
                     "action": "prereq",
                     "to": "CS103"
@@ -126,7 +114,7 @@ export const CSSpec = {
         {
             "name": "CS103",
             "id": "",
-            "description": "",
+            "description": "This is a test description and should be treated as such.",
             "transitions": [
                 {
                     "action": "soft prereq",
@@ -141,7 +129,7 @@ export const CSSpec = {
         {
             "name": "CS109",
             "id": "",
-            "description": "",
+            "description": "This is a test description and should be treated as such.",
             "transitions": [
                 {
                     "action": "prereq",
@@ -152,7 +140,7 @@ export const CSSpec = {
         {
             "name": "CS106B",
             "id": "or",
-            "description": "",
+            "description": "This is a test description and should be treated as such.",
             "transitions": [
                 {
                     "action": "prereq",
@@ -175,7 +163,7 @@ export const CSSpec = {
         {
             "name": "CS106X",
             "id": "or",
-            "description": "",
+            "description": "This is a test description and should be treated as such.",
             "transitions": [
                 {
                     "action": "prereq",
@@ -198,7 +186,7 @@ export const CSSpec = {
         {
             "name": "CS107",
             "id": "or",
-            "description": "",
+            "description": "This is a test description and should be treated as such.",
             "transitions": [
                 {
                     "action": "prereq",
@@ -213,13 +201,13 @@ export const CSSpec = {
         {
             "name": "CS110",
             "id": "",
-            "description": "",
+            "description": "This is a test description and should be treated as such.",
             "transitions": []
         },
         {
             "name": "CS107E",
             "id": "or",
-            "description": "",
+            "description": "This is a test description and should be treated as such.",
             "transitions": [
                 {
                     "action": "prereq",

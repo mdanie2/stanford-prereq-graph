@@ -21,12 +21,13 @@ export default class SpecUtils {
                 'name': item.name,
                 'type': item.id || 'noType',
                 'description': item.description || '',
-                'meta': {
-                    'url': item.url,
-                    'state': item.state
-                },
+                // 'meta': {
+                    // 'url': item.url,
+                    // 'state': item.state
+                // },
                 'links': this.resolveTransitions(item, item.transitions)
             });
+            debugger;
             return accum;
         }, []);
     }
@@ -80,11 +81,11 @@ export default class SpecUtils {
                 'd3': {
                     'source': node.name,
                     'target': item.escalate ? parentNode.name : item.to,
-                    'type': node.id || 'noType',
+                    // 'type': node.id || 'noType',
                     //EITHER USE LODASH OR sourceType/toType
-                    // 'sourceType': node.id || 'noType',
-                    // 'toType': item.toType || 'noType',
-                    'action': item.action ? item.action : item.attribute + ' = ' + item.value.toString()
+                    'sourceType': node.id || 'noType',
+                    'toType': item.toType || 'noType',
+                    'action': item.action || ''
                 }
             });
             return accum;

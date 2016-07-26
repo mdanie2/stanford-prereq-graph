@@ -163,7 +163,8 @@ export const CSSpec = {
                 {
                     "action": "prereq",
                     "to": "PHYSICS43"
-                }//,
+                }
+                // },
                 // {
                 //     "action": "or",
                 //     "to": "PHYSICS21"

@@ -20,6 +20,7 @@ export default class SpecUtils {
             accum.push({
                 'name': item.name,
                 'type': item.id || 'noType',
+                'description': item.description || '',
                 'meta': {
                     'url': item.url,
                     'state': item.state

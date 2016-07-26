@@ -58,6 +58,7 @@ export default class ForceDirectedGraph {
         let tip = d3.tip()
             .attr('class', 'd3-tip')
             .offset([-10, 0])
+            //index being passed, but not description?
             .html(function (d) {
                 return d.description ? d.description : d.name;
             });

@@ -131,6 +131,7 @@ export default class ForceDirectedGraph {
         container.selectAll('.node')
             .on("mouseover", tip.show)
             .on("mouseout", tip.hide);
+            // .on("mouseclick", console.log('click'));
     }
 
     /////////////////////

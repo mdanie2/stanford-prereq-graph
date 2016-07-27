@@ -27,7 +27,7 @@ export default class SpecUtils {
                 // },
                 'links': this.resolveTransitions(item, item.transitions)
             });
-            debugger;
+            // debugger;
             return accum;
         }, []);
     }

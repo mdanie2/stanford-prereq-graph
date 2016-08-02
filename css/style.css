@@ -23,7 +23,10 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
    fill: #ff0000;
  }
 
- .or, .noType{
+ .or{
+   fill: #ff00ff;
+ }
+ .noType{
    /*fill: #bd2031;*/
    fill: #ccc;
  }
@@ -35,7 +38,7 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
  text {
    /*fill: #eeefff;*/
      fill: #000;
-     font: 8px sans-serif;
+     font: 10px sans-serif;
      pointer-events: none;
      text-anchor: middle;
  }

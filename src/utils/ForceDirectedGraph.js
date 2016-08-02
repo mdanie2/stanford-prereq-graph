@@ -1,12 +1,13 @@
 import SpecUtils from './SpecUtils';
-// import _ from 'lodash';
 
 export default class ForceDirectedGraph {
 
     static SpecUtils;
+    static Constants;
 
-    constructor(spec, radius) {
+    constructor(spec, constants, radius) {
         ForceDirectedGraph.SpecUtils = new SpecUtils(spec, radius);
+        ForceDirectedGraph.Constants = constants;
     }
 
     buildBidirectionalGraph() {
@@ -24,7 +25,6 @@ export default class ForceDirectedGraph {
             } else {
                 link.source = nodes[link.source] = {name: link.source, type: link.sourceType};
             }
-            //problem is here
             link.target = nodes[link.target] || (nodes[link.target] = {name: link.target, type: link.toType});
         });
 
@@ -57,7 +57,7 @@ export default class ForceDirectedGraph {
         let tip = d3.tip()
             .attr('class', 'd3-tip')
             .offset([-10, 0])
-            //index being passed, but not description?
+            //TODO: index being passed, but not description?
             .html(function (d) {
                 return d.description ? d.description : d.name;
             });
@@ -91,11 +91,10 @@ export default class ForceDirectedGraph {
         let force = this.buildD3Force(nodes, links, width, height, tick);
         let path = this.buildPath(container, force);
 
-        //TODO: what about nodes that have literally no connections? :O
         let node = this.buildNode(container, force);
         this.addNodeAttributes(node, radius);
 
-        this.addToolTip(container, tip);
+        this.addToolTipToNodes(container, tip);
 
     }
 
@@ -125,13 +124,12 @@ export default class ForceDirectedGraph {
         this.buildArrow(container);
     }
 
-    addToolTip(container, tip){
+    addToolTipToNodes(container, tip){
         container.selectAll('.node').call(tip);
 
         container.selectAll('.node')
             .on("mouseover", tip.show)
             .on("mouseout", tip.hide);
-            // .on("mouseclick", console.log('click'));
     }
 
     /////////////////////
@@ -178,6 +176,9 @@ export default class ForceDirectedGraph {
             .append('svg:g')
             .attr('class', function(d){
               return 'node ' + d.type;
+            })
+            .on("click", function(d){
+                window.open(ForceDirectedGraph.Constants.exploreCoursesFirst + d.name + ForceDirectedGraph.Constants.exploreCoursesSecond);
             });
     }
 

@@ -27,7 +27,6 @@ export default class SpecUtils {
                 // },
                 'links': this.resolveTransitions(item, item.transitions)
             });
-            // debugger;
             return accum;
         }, []);
     }
@@ -80,8 +79,6 @@ export default class SpecUtils {
                 'd3': {
                     'source': node.name,
                     'target': item.escalate ? parentNode.name : item.to,
-                    // 'type': node.id || 'noType',
-                    //EITHER USE LODASH OR sourceType/toType
                     'sourceType': node.id || 'noType',
                     'toType': item.toType || 'noType',
                     'action': item.action || ''

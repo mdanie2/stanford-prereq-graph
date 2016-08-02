@@ -9,7 +9,7 @@ export default class Graph extends React.Component {
     }
 
     componentDidMount() {
-        this.graph = new ForceDirectedGraph(this.props.spec, 20);
+        this.graph = new ForceDirectedGraph(this.props.spec, this.props.constants, 20);
         this.graph.buildBidirectionalGraph();
     }
 

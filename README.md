@@ -63,16 +63,12 @@ BUGS
 
 ADDITIONS
 ----------------------------------------------
-* Make "starter" node smaller radius
-* Make "connector" links smaller and invisible
 * Make starting nodes different color/size/shape
 * Color coded graph
 * key
 * toolbar on the bottom for key, refresh, etc.
-* web parser??
+* set width of tooltip. Pass description of node to tooltip.
+* On click, another pop-up should appear
 
 NOTES
 ----------------------------------------------
-* if a node doesn't connect to anything initially, I should have a bidirectional connection to a starter node
-  * update to ForceDirectedGraph can fix that
-* if using lodash, maybe store the array num inside of each item? or just us toType/fromType?

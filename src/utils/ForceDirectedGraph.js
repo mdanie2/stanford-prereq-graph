@@ -162,8 +162,8 @@ export default class ForceDirectedGraph {
             .links(links)
             .size([width, height])
             .gravity(0.09)
-            .linkDistance(75)
-            .charge(-500)
+            .linkDistance(90)
+            .charge(-600)
             .on('tick', tick)
             .start();
     }

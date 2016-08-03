@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import _ from 'lodash';
 import Graph from './Graph';
 import {Constants} from '../utils/Constants';
 import {CSSpec} from '../utils/CSSpecv2';
@@ -11,7 +12,7 @@ export default class Selection extends React.Component {
         super(props);
         this.state = {
             show: true,
-            major: '',
+            specSheet: '',
             track: ''
         }
     }
@@ -20,10 +21,10 @@ export default class Selection extends React.Component {
         e.preventDefault();
         let major = this.state.major.trim().replace(/\s+/g, '_'),
             track = this.state.track.trim().replace(/\s+/g, '_');
-            debugger;
-        let theSpec = Constants.spec.major;
-        debugger;
-        this.setState({show: !this.state.show});
+        let theSpec = _.get(Constants.spec, major);
+        if(theSpec){
+            this.setState({show: !this.state.show, specSheet: theSpec});
+        }
     }
 
     handleMajorChange = (e) => {
@@ -32,6 +33,20 @@ export default class Selection extends React.Component {
 
     handleTrackChange = (e) => {
         this.setState({track: e.target.value});
+    }
+
+    getSpecSheet = () => {
+        let spec = this.state.specSheet;
+        if(spec === "CSSpec"){
+            return CSSpec.navSpecs;
+        }
+        else if(spec === "MESpec"){
+            return MESpec.navSpecs;
+        }
+        //If we ever get here, there's a problem.
+        else{
+            return null;
+        }
     }
 
     render(){
@@ -45,7 +60,7 @@ export default class Selection extends React.Component {
             );
         }
         else{
-            return (<Graph spec={CSSpec.navSpecs} constants={Constants.webpage} />);
+            return (<Graph spec={this.getSpecSheet()} constants={Constants.webpage} />);
         }
     }
 }

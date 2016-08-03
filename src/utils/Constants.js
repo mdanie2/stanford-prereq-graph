@@ -7,7 +7,7 @@ export const Constants = {
         "exploreCoursesSecond": "&collapse="
     },
     "spec": {
-        "Computer_Science": "CSSSpecv2",
+        "Computer_Science": "CSSpec",
         "Mechanical_Engineering": "MESpec"
     }
 }

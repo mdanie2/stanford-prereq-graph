@@ -54,11 +54,7 @@ export const CSSpec = {
                 {
                     "action": "prereq",
                     "to": "MATH20"
-                }//,
-                // {
-                //     "action": "or",
-                //     "to": "MATH41"
-                // }
+                }
               ]
         },
         {
@@ -69,11 +65,7 @@ export const CSSpec = {
                 {
                     "action": "prereq",
                     "to": "MATH21"
-                }//,
-                // {
-                //     "action": "prereq",
-                //     "to": "PHYSICS41"
-                // }
+                }
             ]
         },
         {
@@ -82,7 +74,7 @@ export const CSSpec = {
             "description": "This is a test description and should be treated as such.",
             "transitions": [
                 {
-                    "action": "coreq",
+                    "action": "prereq",
                     "to": "PHYSICS41"
                 }
             ]
@@ -119,6 +111,7 @@ export const CSSpec = {
         // },
         {
             "name": "ENGR40A",
+            //TODO: create coreqor
             "id": "or",
             "description": "This is a test description and should be treated as such.",
             "transitions": [
@@ -156,7 +149,6 @@ export const CSSpec = {
         },
         {
             "name": "PHYSICS41",
-            // "id": "or",
             "id": "",
             "description": "This is a test description and should be treated as such.",
             "transitions": [
@@ -164,15 +156,6 @@ export const CSSpec = {
                     "action": "prereq",
                     "to": "PHYSICS43"
                 }
-                // },
-                // {
-                //     "action": "or",
-                //     "to": "PHYSICS21"
-                // },
-                // {
-                //     "action": "or",
-                //     "to": "PHYSICS61"
-                // }
             ]
         },
         {
@@ -262,18 +245,10 @@ export const CSSpec = {
                     "action": "connector",
                     "to": "PHYSICS41"
                 },
-                // {
-                //     "action": "connector",
-                //     "to": "PHYSICS23"
-                // },
                 {
                     "action": "connector",
                     "to": "PHYSICS43"
-                }//,
-                // {
-                //     "action": "connector",
-                //     "to": "PHYSICS63"
-                // }
+                }
             ]
         },
         {

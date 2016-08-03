@@ -8,7 +8,8 @@ export default class Graph extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            show: true
+            show: true,
+            refresh: false
         }
     }
 
@@ -20,19 +21,28 @@ export default class Graph extends React.Component {
     handleClick = (e) => {
         e.preventDefault();
         this.graph.deconstructGraph();
-        this.setState({show: !this.state.show});
+        if(e.target.value === this.props.constants.exit) {
+            this.setState({show: !this.state.show});
+        }
+        else {
+            this.setState({show: !this.state.show, refresh: true})
+        }
     }
 
     render() {
         if(this.state.show){
             return (
                 <div>
-                    <input type="submit" value="x" onClick={this.handleClick} />
+                    <input type="submit" value={this.props.constants.refresh} onClick={this.handleClick} />
+                    <input type="submit" value={this.props.constants.exit} onClick={this.handleClick} />
                 </div>
             );
         }
+        else if(this.state.refresh){
+            return <Selection show={false} specName={this.props.specName} />
+        }
         else{
-            return <Selection />;
+            return <Selection show={true} specName={null} />;
         }
     }
 }

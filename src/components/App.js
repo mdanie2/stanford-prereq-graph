@@ -5,7 +5,7 @@ import Selection from './Selection';
 export default class App extends Component {
   render() {
     return (
-      <Selection />
+      <Selection show={true} specName={null} />
     );
   }
 }

@@ -4,7 +4,9 @@ export const Constants = {
     },
     "webpage": {
         "exploreCoursesFirst": "https://explorecourses.stanford.edu/search?view=catalog&filter-coursestatus-Active=on&page=0&catalog=&academicYear=&q=",
-        "exploreCoursesSecond": "&collapse="
+        "exploreCoursesSecond": "&collapse=",
+        "refresh": "R",
+        "exit": "X"
     },
     "spec": {
         "Computer_Science": "CSSpec",

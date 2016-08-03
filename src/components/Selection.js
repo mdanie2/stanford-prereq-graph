@@ -11,8 +11,8 @@ export default class Selection extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            show: true,
-            specSheet: '',
+            show: this.props.show,
+            specSheet: this.props.specName || '',
             track: ''
         }
     }
@@ -60,7 +60,7 @@ export default class Selection extends React.Component {
             );
         }
         else{
-            return (<Graph spec={this.getSpecSheet()} constants={Constants.webpage} />);
+            return (<Graph spec={this.getSpecSheet()} specName={this.state.specSheet} constants={Constants.webpage} />);
         }
     }
 }

@@ -23,27 +23,7 @@ export const CSSpec = {
                     "action": "connector",
                     "to": "MATH19",
                     "toType": "starter"
-                },
-                // {
-                //     "action": "connector",
-                //     "to": "Senior Project",
-                //     "toType": ""
-                // },
-                // {
-                //     "action": "connector",
-                //     "to": "Math Electives",
-                //     "toType": ""
-                // },
-                // {
-                //     "action": "connector",
-                //     "to": "Science Elective",
-                //     "toType": ""
-                // },
-                // {
-                //     "action": "connector",
-                //     "to": "TiS",
-                //     "toType": ""
-                // }
+                }
             ]
         },
         {
@@ -70,45 +50,15 @@ export const CSSpec = {
         },
         {
             "name": "MATH21",
-            "id": "",
+            "id": "coreq",
             "description": "This is a test description and should be treated as such.",
             "transitions": [
                 {
-                    "action": "prereq",
+                    "action": "coreq",
                     "to": "PHYSICS41"
                 }
             ]
         },
-        // {
-        //     "name": "MATH41",
-        //     "id": "starter",
-        //     "description": "This is a test description and should be treated as such.",
-        //     "transitions": [
-        //         // {
-        //         //     "action": "prereq",
-        //         //     "to": "PHYSICS41"
-        //         // },
-        //         {
-        //             "action": "prereq",
-        //             "to": "MATH42"
-        //         },
-        //         {
-        //             "action": "or",
-        //             "to": "MATH19"
-        //         }
-        //     ]
-        // },
-        // {
-        //     "name": "MATH42",
-        //     "id": "",
-        //     "description": "This is a test description and should be treated as such.",
-        //     "transitions": [
-        //         {
-        //             "action": "coreq",
-        //             "to": "PHYSICS41"
-        //         }
-        //     ]
-        // },
         {
             "name": "ENGR40A",
             //TODO: create coreqor
@@ -127,7 +77,7 @@ export const CSSpec = {
         },
         {
             "name": "ENGR40B",
-            "id": "",
+            "id": "coreq",
             "description": "This is a test description and should be treated as such.",
             "transitions": [
               {
@@ -149,12 +99,16 @@ export const CSSpec = {
         },
         {
             "name": "PHYSICS41",
-            "id": "",
+            "id": "coreq",
             "description": "This is a test description and should be treated as such.",
             "transitions": [
                 {
                     "action": "prereq",
                     "to": "PHYSICS43"
+                },
+                {
+                    "action": "coreq",
+                    "to": "MATH21"
                 }
             ]
         },
@@ -164,44 +118,6 @@ export const CSSpec = {
             "description": "This is a test description and should be treated as such.",
             "transitions": []
         },
-        // {
-        //     "name": "PHYSICS21",
-        //     "id": "or",
-        //     "description": "This is a test description and should be treated as such.",
-        //     "transitions": [
-        //         {
-        //             "action": "prereq",
-        //             "to": "PHYSICS23"
-        //         },
-        //         {
-        //             "action": "or",
-        //             "to": "PHYSICS41"
-        //         },
-        //         {
-        //             "action": "or",
-        //             "to": "PHYSICS61"
-        //         }
-        //     ]
-        // },
-        // {
-        //     "name": "PHYSICS61",
-        //     "id": "or",
-        //     "description": "This is a test description and should be treated as such.",
-        //     "transitions": [
-        //         {
-        //             "action": "prereq",
-        //             "to": "PHYSICS63"
-        //         },
-        //         {
-        //             "action": "or",
-        //             "to": "PHYSICS41"
-        //         },
-        //         {
-        //             "action": "or",
-        //             "to": "PHYSICS61"
-        //         }
-        //     ]
-        // },
         {
             "name": "Engineering Elective",
             "id": "",
@@ -297,6 +213,21 @@ export const CSSpec = {
             ]
         },
         {
+            "name": "CS103",
+            "id": "",
+            "description": "This is a test description and should be treated as such.",
+            "transitions": [
+                {
+                    "action": "prereq",
+                    "to": "CS109"
+                },
+                {
+                    "action": "prereq",
+                    "to": "CS161"
+                }
+            ],
+        },
+        {
             "name": "CS106A",
             "id": "starter",
             "description": "This is a test description and should be treated as such.",
@@ -316,32 +247,6 @@ export const CSSpec = {
                 {
                     "action": "prereq",
                     "to": "ENGR40M"
-                }
-            ]
-        },
-        {
-            "name": "CS103",
-            "id": "",
-            "description": "This is a test description and should be treated as such.",
-            "transitions": [
-                {
-                    "action": "prereq",
-                    "to": "CS109"
-                },
-                {
-                    "action": "prereq",
-                    "to": "CS161"
-                }
-            ],
-        },
-        {
-            "name": "CS109",
-            "id": "",
-            "description": "This is a test description and should be treated as such.",
-            "transitions": [
-                {
-                    "action": "prereq",
-                    "to": "CS161"
                 }
             ]
         },
@@ -418,6 +323,17 @@ export const CSSpec = {
                 {
                     "action": "or",
                     "to": "CS107"
+                }
+            ]
+        },
+        {
+            "name": "CS109",
+            "id": "",
+            "description": "This is a test description and should be treated as such.",
+            "transitions": [
+                {
+                    "action": "prereq",
+                    "to": "CS161"
                 }
             ]
         },

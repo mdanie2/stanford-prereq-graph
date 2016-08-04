@@ -36,7 +36,7 @@ export const MESpec = {
         //Math and Their Prequisites
         {
             "name": "CME100",
-            "id": "",
+            "id": "optional",
             "description": "This is a test description and should be treated as such.",
             "transitions": [
                 {
@@ -62,7 +62,7 @@ export const MESpec = {
         },
         {
             "name": "MATH42",
-            "id": "",
+            "id": "coreq",
             "description": "This is a test description and should be treated as such.",
             "transitions": [
                 {
@@ -76,12 +76,16 @@ export const MESpec = {
                 {
                     "action": "prereq",
                     "to": "STATS110"
+                },
+                {
+                    "action": "coreq",
+                    "to": "PHYSICS41"
                 }
             ]
         },
         {
             "name": "MATH51",
-            "id": "",
+            "id": "optional",
             "description": "This is a test description and should be treated as such.",
             "transitions": [
                 {
@@ -96,7 +100,7 @@ export const MESpec = {
         },
         {
             "name": "MATH52",
-            "id": "",
+            "id": "optional",
             "description": "This is a test description and should be treated as such.",
             "transitions": [
                 {
@@ -179,7 +183,7 @@ export const MESpec = {
         //Science and Their Prerequisites
         {
             "name": "MATH41",
-            "id": "",
+            "id": "starter",
             "description": "This is a test description and should be treated as such.",
             "transitions": [
                 {
@@ -190,6 +194,10 @@ export const MESpec = {
                 {
                     "action": "prereq",
                     "to": "MATH42"
+                },
+                {
+                    "action": "prereq",
+                    "to": "PHYSICS41"
                 }
             ]
         },
@@ -213,7 +221,7 @@ export const MESpec = {
         //Engineering Fundamentals
         {
             "name": "ENGR40A",
-            "id": "",
+            "id": "starter",
             "description": "This is a test description and should be treated as such.",
             "transitions": [
                 {
@@ -224,7 +232,7 @@ export const MESpec = {
         },
         {
             "name": "ENGR40B",
-            "id": "",
+            "id": "starter",
             "description": "This is a test description and should be treated as such.",
             "transitions": [
                 {
@@ -240,7 +248,22 @@ export const MESpec = {
             "description": "This is a test description and should be treated as such.",
             "transitions": []
         },
-        //Engineering Depth
+        //Engineering Depth and their prereqs
+        {
+            "name": "PHYSICS41",
+            "id": "coreq",
+            "description": "This is a test description and should be treated as such.",
+            "transitions": [
+                {
+                    "action": "prereq",
+                    "to": "ENGR14"
+                },
+                {
+                    "action": "coreq",
+                    "to": "MATH42"
+                }
+            ]
+        },
         {
             "name": "ENGR14",
             "id": "",
@@ -273,7 +296,7 @@ export const MESpec = {
         },
         {
             "name": "ENGR30",
-            "id": "",
+            "id": "starter",
             "description": "This is a test description and should be treated as such.",
             "transitions": [
                 {
@@ -341,7 +364,7 @@ export const MESpec = {
         },
         {
             "name": "ME103D",
-            "id": "",
+            "id": "coreq",
             "description": "This is a test description and should be treated as such.",
             "transitions": [
                 {
@@ -435,7 +458,7 @@ export const MESpec = {
         },
         {
             "name": "ME203",
-            "id": "",
+            "id": "coreq",
             "description": "This is a test description and should be treated as such.",
             "transitions": [
                 {

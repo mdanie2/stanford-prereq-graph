@@ -42,6 +42,10 @@ export const MESpec = {
                 {
                     "action": "prereq",
                     "to": "CME102"
+                },
+                {
+                    "action": "prereq",
+                    "to": "CME106"
                 }
             ]
         },
@@ -61,6 +65,10 @@ export const MESpec = {
             "id": "",
             "description": "This is a test description and should be treated as such.",
             "transitions": [
+                {
+                    "action": "prereq",
+                    "to": "CME100"
+                },
                 {
                     "action": "prereq",
                     "to": "MATH51"

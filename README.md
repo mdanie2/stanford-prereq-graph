@@ -68,7 +68,7 @@ ADDITIONS
 * key
 * toolbar on the bottom for key, refresh, etc.
 * set width of tooltip. Pass description of node to tooltip.
-* On click, another pop-up should appear
 
 NOTES
 ----------------------------------------------
+* Node doesn't need to be listed if it isn't a prerequisite for a class

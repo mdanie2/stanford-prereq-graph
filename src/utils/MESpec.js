@@ -23,7 +23,7 @@ export const MESpec = {
                     "action": "connector",
                     "to": "TiS",
                     "toType": ""
-                },
+                }
             ]
         },
         //TiS
@@ -166,7 +166,7 @@ export const MESpec = {
             ]
         },
         {
-            "name": "Addtl. Math Courses",
+            "name": "Math Electives",
             "id": "",
             "description": "This is a test description and should be treated as such.",
             "transitions": [
@@ -208,7 +208,7 @@ export const MESpec = {
             "transitions": []
         },
         {
-            "name": "Addtl. Science Courses",
+            "name": "Science Electives",
             "id": "",
             "description": "This is a test description and should be treated as such.",
             "transitions": [

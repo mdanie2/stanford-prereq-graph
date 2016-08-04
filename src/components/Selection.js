@@ -5,6 +5,7 @@ import Graph from './Graph';
 import {Constants} from '../utils/Constants';
 import {CSSpec} from '../utils/CSSpecv2';
 import {MESpec} from '../utils/MESpec';
+import {MSESpec} from '../utils/MSESpec';
 
 export default class Selection extends React.Component {
 
@@ -42,6 +43,9 @@ export default class Selection extends React.Component {
         }
         else if(spec === "MESpec"){
             return MESpec.navSpecs;
+        }
+        else if(spec === "MSESpec"){
+            return MSESpec.navSpecs;
         }
         //If we ever get here, there's a problem.
         else{

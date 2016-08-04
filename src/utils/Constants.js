@@ -10,6 +10,7 @@ export const Constants = {
     },
     "spec": {
         "Computer_Science": "CSSpec",
-        "Mechanical_Engineering": "MESpec"
+        "Mechanical_Engineering": "MESpec",
+        "Management_Science_and_Engineering": "MSESpec"
     }
 }

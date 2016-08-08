@@ -114,10 +114,14 @@ export const MSESpec = {
             ]
         },
         {
-            "name": "COMM120W",
+            "name": "TiS",
             "id": "or",
             "description": "This is a test description and should be treated as such.",
             "transitions": [
+                {
+                    "action": "or",
+                    "to": "COMM120W"
+                },
                 {
                     "action": "or",
                     "to": "CS181"
@@ -135,98 +139,36 @@ export const MSESpec = {
                     "to": "STS1"
                 }
             ]
+        },
+        {
+            "name": "COMM120W",
+            "id": "or",
+            "description": "This is a test description and should be treated as such.",
+            "transitions": []
         },
         {
             "name": "CS181",
             "id": "or",
             "description": "This is a test description and should be treated as such.",
-            "transitions": [
-                {
-                    "action": "or",
-                    "to": "COMM120W"
-                },
-                {
-                    "action": "or",
-                    "to": "ENGR131"
-                },
-                {
-                    "action": "or",
-                    "to": "MS&E193"
-                },
-                {
-                    "action": "or",
-                    "to": "STS1"
-                }
-            ]
+            "transitions": []
         },
         {
             "name": "ENGR131",
             "id": "or",
             "description": "This is a test description and should be treated as such.",
-            "transitions": [
-                {
-                    "action": "or",
-                    "to": "COMM120W"
-                },
-                {
-                    "action": "or",
-                    "to": "CS181"
-                },
-                {
-                    "action": "or",
-                    "to": "MS&E193"
-                },
-                {
-                    "action": "or",
-                    "to": "STS1"
-                }
-            ]
+            "transitions": []
         },
         {
             "name": "MS&E193",
             "id": "or",
             "description": "This is a test description and should be treated as such.",
-            "transitions": [
-                {
-                    "action": "or",
-                    "to": "COMM120W"
-                },
-                {
-                    "action": "or",
-                    "to": "CS181"
-                },
-                {
-                    "action": "or",
-                    "to": "ENGR131"
-                },
-                {
-                    "action": "or",
-                    "to": "STS1"
-                }
-            ]
+            "transitions": []
         },
         {
             "name": "STS1",
             "id": "or",
             "description": "This is a test description and should be treated as such.",
-            "transitions": [
-                {
-                    "action": "or",
-                    "to": "COMM120W"
-                },
-                {
-                    "action": "or",
-                    "to": "CS181"
-                },
-                {
-                    "action": "or",
-                    "to": "ENGR131"
-                },
-                {
-                    "action": "or",
-                    "to": "MS&E193"
-                }
-            ]
+            "transitions": []
         },
         //Engineering Fundamentals
         {

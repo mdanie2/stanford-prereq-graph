@@ -20,12 +20,21 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
  }
 
  .starter{
-   fill: #ff0000;
+   fill: #00ff00;
  }
 
  .or{
    fill: #ff00ff;
  }
+
+ .optional{
+     fill: #ff0000;
+ }
+
+ .coreq{
+     fill: #ffff00;
+ }
+
  .noType{
    /*fill: #bd2031;*/
    fill: #ccc;

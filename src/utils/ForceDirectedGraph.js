@@ -98,6 +98,11 @@ export default class ForceDirectedGraph {
 
     }
 
+    deconstructGraph() {
+        d3.select("svg").remove();
+        d3.select(".d3-tip").remove();
+    }
+
     /////////////////////
     //Attribute Methods//
     /////////////////////

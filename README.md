@@ -50,25 +50,3 @@ This boilerplate is purposefully simple to show the minimal configuration for Re
 * [Integrating JSX live reload into your workflow](http://gaearon.github.io/react-hot-loader/getstarted/)
 * [Troubleshooting guide](https://github.com/gaearon/react-hot-loader/blob/master/docs/Troubleshooting.md)
 * Ping dan_abramov on Twitter or #reactjs IRC
-
-
-Developer
-==============================================
-
-BUGS
-----------------------------------------------
-* tool tip does not work when you enter fool screen (GC)
-  * seems to work again when you click the tab?
-
-
-ADDITIONS
-----------------------------------------------
-* Make starting nodes different color/size/shape
-* Color coded graph
-* key
-* toolbar on the bottom for key, refresh, etc.
-* set width of tooltip. Pass description of node to tooltip.
-* On click, another pop-up should appear
-
-NOTES
-----------------------------------------------

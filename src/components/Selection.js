@@ -56,7 +56,7 @@ export default class Selection extends React.Component {
     render(){
         if(this.state.show){
             return (
-            <div>
+            <div className="search">
                 <input type="text" placeholder="Major" onChange={this.handleMajorChange} />
                 <input type="text" placeholder="Track (optional)" onChange={this.handleTrackChange} />
                 <input type="submit" value="Create Graph" onClick={this.handleClick} />

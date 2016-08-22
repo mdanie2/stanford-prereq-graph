@@ -9,8 +9,8 @@ export const Constants = {
         "exit": "X"
     },
     "spec": {
-        "Computer_Science": "CSSpec",
-        "Mechanical_Engineering": "MESpec",
-        "Management_Science_and_Engineering": "MSESpec"
+        "Computer Science": "CSSpec",
+        "Mechanical Engineering": "MESpec",
+        "Management Science and Engineering": "MSESpec"
     }
 }

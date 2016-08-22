@@ -20,8 +20,8 @@ export default class Selection extends React.Component {
 
     handleClick = (e) => {
         e.preventDefault();
-        let major = this.state.major.trim().replace(/\s+/g, '_'),
-            track = this.state.track.trim().replace(/\s+/g, '_');
+        let major = this.state.major.trim(),
+            track = this.state.track.trim()
         let theSpec = _.get(Constants.spec, major);
         if(theSpec){
             this.setState({show: !this.state.show, specSheet: theSpec});

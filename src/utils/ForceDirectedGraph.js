@@ -13,19 +13,34 @@ export default class ForceDirectedGraph {
     buildBidirectionalGraph() {
         const radius = ForceDirectedGraph.SpecUtils.radius;
         let nodes = {};
-        const links = ForceDirectedGraph.SpecUtils.getD3Links();
+        const links = ForceDirectedGraph.SpecUtils.getD3Links(),
+            descriptions = ForceDirectedGraph.SpecUtils.getDescriptions(),
+            units = ForceDirectedGraph.SpecUtils.getUnits(),
+            names = ForceDirectedGraph.SpecUtils.getNames();
 
         // Compute the distinct nodes from the links.
         links.forEach(function(link) {
             if (nodes[link.source]) {
                 link.source = nodes[link.source];
                 if (link.sourceType && !_.get(nodes[link.source], 'type')) {
-                    nodes[link.source.name].type = link.sourceType;
+                    nodes[link.source.number].type = link.sourceType;
                 }
             } else {
-                link.source = nodes[link.source] = {name: link.source, type: link.sourceType};
+                link.source = nodes[link.source] = {
+                    number: link.source,
+                    name: names[link.source],
+                    type: link.sourceType,
+                    description: descriptions[link.source],
+                    units: units[link.source]
+                };
             }
-            link.target = nodes[link.target] || (nodes[link.target] = {name: link.target, type: link.toType});
+            link.target = nodes[link.target] || (nodes[link.target] = {
+                number: link.target,
+                name: names[link.target],
+                type: link.toType,
+                description: descriptions[link.target],
+                units: units[link.target]
+            });
         });
 
         const width = window.innerWidth,
@@ -47,21 +62,56 @@ export default class ForceDirectedGraph {
             .attr('transform', 'translate(' + margin.left + ',' + margin.right + ')')
             .call(zoom);
 
-        //TODO: Seems uneeded. remove? maybe use later
         let rect = svg.append('rect')
             .attr('width', width)
             .attr('height', height)
             .style('fill', 'none')
             .style('pointer-events', 'all');
-
-        let tip = d3.tip()
-            .attr('class', 'd3-tip')
+        //TODO:Change lister html formatting
+        let nodeTip = d3.tip()
+            .attr('class', 'nodeTip')
             .offset([-10, 0])
-            //TODO: index being passed, but not description?
             .html(function (d) {
-                return d.description ? d.description : d.name;
+                if(d.type !== "lister") {
+                    const course = `<div class="fistLine"> <strong> Course: </strong> ${d.name} </div>`;
+                    const units = `<div> <strong> Units: </strong> ${d.units} </div>`;
+                    let description = "<div> <strong> Description: </strong> ", temp = d.description, charLimit = 86;
+                    while(temp.length > charLimit){
+                        let index = temp.indexOf(" ", charLimit);
+                        if(index > -1) {
+                            let str = temp.substring(0, index);
+                            description = description + str + "<br>";
+                            temp = temp.substring(index);
+                        }
+                        else {
+                            description = description + temp + "<br>";
+                            temp = "";
+                        }
+                        charLimit = 100;
+                    }
+                    description = description + temp + "</div>";
+                    return course + units + description;
+                }
+                else {
+                    // let description = `<div> The following classes can fulfill the ${d.name} requirement.<br>`;
+                    // return description;
+                    return `<div class="firstLine"> ${d.description} </div>`;
+                }
             });
 
+        let linkTip = d3.tip()
+            .attr('class', 'linkTip')
+            .offset([-10, 0])
+            .html(function(d) {
+                const action = d.action;
+                if(action.includes("prerequisite")) return `<div> ${d.source.number} is a ${action} for ${d.target.number}. </div>`;
+                else if(action === "or") return `<div>Either ${d.source.number} ${action} ${d.target.number} can be taken to fulfill major requirements. You do not have to take both.`;
+                else if(action.includes("corequisite")){
+                    if(action !== "corequisites") return `<div> ${d.source.number} is a ${action} for ${d.target.number}.</div>`;
+                    return `<div> ${d.source.number} and ${d.target.number} are ${action}. </div>`;
+                }
+                return "<div> Hmm, there doesn't seem to be a proper description for this connection.<br>This is most likely a mistake and will be fixed soon.</div>";
+            });
 
         const tick = () => {
             // add the curvy lines
@@ -94,13 +144,14 @@ export default class ForceDirectedGraph {
         let node = this.buildNode(container, force);
         this.addNodeAttributes(node, radius);
 
-        this.addToolTipToNodes(container, tip);
+        this.addToolTips(container, nodeTip, linkTip);
 
     }
 
     deconstructGraph() {
         d3.select("svg").remove();
-        d3.select(".d3-tip").remove();
+        d3.select(".nodeTip").remove();
+        d3.select(".linkTip").remove();
     }
 
     /////////////////////
@@ -121,7 +172,7 @@ export default class ForceDirectedGraph {
         // add the text
         node.append('text')
             .attr('dy', '.35em')
-            .text(function(d) {return d.name; });
+            .text(function(d) {return d.number; });
     }
 
     addToContainer(container, width, height){
@@ -129,12 +180,17 @@ export default class ForceDirectedGraph {
         this.buildArrow(container);
     }
 
-    addToolTipToNodes(container, tip){
-        container.selectAll('.node').call(tip);
+    addToolTips(container, nodeTip, linkTip){
+        container.selectAll('.node').call(nodeTip);
+        container.selectAll('.link').call(linkTip);
 
         container.selectAll('.node')
-            .on("mouseover", tip.show)
-            .on("mouseout", tip.hide);
+            .on("mouseover", nodeTip.show)
+            .on("mouseout", nodeTip.hide);
+
+        container.selectAll('.link')
+            .on("mouseover", linkTip.show)
+            .on("mouseout", linkTip.hide);
     }
 
     /////////////////////
@@ -166,9 +222,9 @@ export default class ForceDirectedGraph {
             .nodes(d3.values(nodes))
             .links(links)
             .size([width, height])
-            .gravity(0.09)
-            .linkDistance(90)
-            .charge(-600)
+            .gravity(0.07)
+            .linkDistance(105)
+            .charge(-800)
             .on('tick', tick)
             .start();
     }
@@ -183,7 +239,10 @@ export default class ForceDirectedGraph {
               return 'node ' + d.type;
             })
             .on("click", function(d){
-                window.open(ForceDirectedGraph.Constants.exploreCoursesFirst + d.name + ForceDirectedGraph.Constants.exploreCoursesSecond);
+                if(d.type !== "lister") window.open(ForceDirectedGraph.Constants.carta + d.number);
+                else{
+                    // window.open(ForceDirectedGraph.Constants.exploreDegreesFirst);
+                }
             });
     }
 

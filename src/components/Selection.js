@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import _ from 'lodash';
 import Graph from './Graph';
 import {Constants} from '../utils/Constants';
-import {CSSpec} from '../utils/CSSpecv2';
+import {CSSpec} from '../utils/CSSpec';
 import {MESpec} from '../utils/MESpec';
 import {MSESpec} from '../utils/MSESpec';
 
@@ -21,8 +21,7 @@ export default class Selection extends React.Component {
     handleClick = (e) => {
         e.preventDefault();
         let major = this.state.major.trim(),
-            track = this.state.track.trim()
-        let theSpec = _.get(Constants.spec, major);
+            theSpec = _.get(Constants.spec, major);
         if(theSpec){
             this.setState({show: !this.state.show, specSheet: theSpec});
         }
@@ -57,8 +56,12 @@ export default class Selection extends React.Component {
         if(this.state.show){
             return (
             <div className="search">
-                <input type="text" placeholder="Major" onChange={this.handleMajorChange} />
-                <input type="text" placeholder="Track (optional)" onChange={this.handleTrackChange} />
+                <input type="text" placeholder="Major" list="major" onChange={this.handleMajorChange} />
+                <datalist id="major">
+                    <option value="Computer Science" />
+                    <option value="Management Science and Engineering" />
+                    <option value="Mechanical Engineering" />
+                </datalist>
                 <input type="submit" value="Create Graph" onClick={this.handleClick} />
             </div>
             );

@@ -7,7 +7,6 @@ export default class SpecUtils {
         this.graph = this.specTransformer(this.spec);
         this.radius = radius;
         this.nodeSize = this.cacheNodeConnections();
-        this.name = "";
     }
 
     /**

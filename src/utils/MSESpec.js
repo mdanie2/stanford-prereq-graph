@@ -20,6 +20,11 @@ export const MSESpec = {
                     "to": "TiS",
                     "toType": "lister"
                 },
+                {
+                    "action": "connector",
+                    "to": "Science Sequence",
+                    "toType": "lister"
+                }
             ]
         },
         //Math and their Prerequisites
@@ -32,10 +37,6 @@ export const MSESpec = {
                 {
                     "action": "prerequisite",
                     "to": "MATH42"
-                },
-                {
-                    "action": "prerequisite",
-                    "to": "CHEM31X"
                 }
             ],
             "units": 4
@@ -127,59 +128,11 @@ export const MSESpec = {
         },
         //Science and their Prerequisites
         {
-            "number": "CHEM31A",
-            "id": "starter",
-            "name": "Chemical Principles I",
-            "description": "For students with moderate or no background in chemistry. Stoichiometry; periodicity; electronic structure and bonding; gases; enthalpy; phase behavior. Emphasis is on skills to address structural and quantitative chemical questions; lab provides practice. Recitation.",
-            "transitions": [
-                {
-                    "action": "prerequisite",
-                    "to": "CHEM31B"
-                }
-            ],
-            "units": 5
-        },
-        {
-            "number": "CHEM31B",
-            "id": "or",
-            "name": "Chemical Principles II",
-            "description": "Chemical equilibrium; acids and bases; oxidation and reduction reactions; chemical thermodynamics; kinetics. Lab. Prerequisite: CHEM 31A.",
-            "transitions": [
-                {
-                    "action": "or",
-                    "to": "CHEM31X"
-                },
-                {
-                    "action": "prerequisite",
-                    "to": "CHEM33"
-                }
-            ],
-            "units": 5
-        },
-        {
-            "number": "CHEM31X",
-            "id": "or",
-            "name": "Chemical Principles Accelerated",
-            "description": "Accelerated; for students with substantial chemistry background. Chemical equilibria concepts, equilibrium constants, acids and bases, chemical thermodynamics, quantum concepts, models of ionic and covalent bonding, atomic and molecular orbital theory, periodicity, and bonding properties of matter. Recitation. Prerequisites: AP chemistry score of 5 or passing score on chemistry placement test, and AP Calculus AB score of 4 or Math 20 or Math 41. Recommended: high school physics.",
-            "transitions": [
-                {
-                    "action": "or",
-                    "to": "CHEM31B"
-                },
-                {
-                    "action": "prerequisite",
-                    "to": "CHEM33"
-                }
-            ],
-            "units": 5
-        },
-        {
-            "number": "CHEM33",
-            "id": "",
-            "name": "Structure and Relativity",
-            "description": "Organic chemistry, functional groups, hydrocarbons, stereochemistry, thermochemistry, kinetics, chemical equilibria. Recitation. Prerequisite: 31A,B, or 31X, or an AP Chemistry score of 5.",
-            "transitions": [],
-            "units": 5
+            "number": "Science Sequence",
+            "name": "Science Sequence",
+            "id": "lister",
+            "description": "Complete one of the following series: <ul><li>CHEM 31X and CHEM 33</li><li>PHYSICS 21 and PHYSICS 22, PHYSICS 23 and PHYSICS 24</li><li>CHEM 31B and CHEM 33</li><li>PHYSICS 41 and PHYSICS 43</li></ul>",
+            "transitions": []
         },
         /* TODO FIND ME
         {
@@ -225,41 +178,6 @@ export const MSESpec = {
                 // }
             ]
         },
-        // {
-        //     "number": "COMM120W",
-        //     "id": "or",
-        //     "description": "This is a test description and should be treated as such.",
-        //     "transitions": [],
-        //     "units": 0
-        // },
-        // {
-        //     "number": "CS181",
-        //     "id": "or",
-        //     "description": "This is a test description and should be treated as such.",
-        //     "transitions": [],
-        //     "units": 0
-        // },
-        // {
-        //     "number": "ENGR131",
-        //     "id": "or",
-        //     "description": "This is a test description and should be treated as such.",
-        //     "transitions": [],
-        //     "units": 0
-        // },
-        // {
-        //     "number": "MS&E193",
-        //     "id": "or",
-        //     "description": "This is a test description and should be treated as such.",
-        //     "transitions": [],
-        //     "units": 0
-        // },
-        // {
-        //     "number": "STS1",
-        //     "id": "or",
-        //     "description": "This is a test description and should be treated as such.",
-        //     "transitions": [],
-        //     "units": 0
-        // },
         //Engineering Fundamentals
         {
             "number": "CS106A",
@@ -284,6 +202,30 @@ export const MSESpec = {
         },
         //Engineering Depth and Their Prerequisites
         {
+            "number": "Engineering 1",
+            "name": "Engineering Fundamentals 1",
+            "id": "lister",
+            "description": "One of the following courses must be taking to fulfill the engineering fundamentals requirement: <ul><li>ENGR 25B</li><li>ENGR 25E</li><li>ENGR 40</li><li>ENGR 40A</li><li>ENGR 40M</li><li>ENGR 40P</li><li>ENGR 80</li></ul>",
+            "transitions": [
+                {
+                    "action": "connector",
+                    "to": "connectingNode"
+                }
+            ]
+        },
+        {
+            "number": "Engineering 2",
+            "name": "Engineering Fundamentals 2",
+            "id": "lister",
+            "description": "One of the following courses must be taking to fulfill the engineering fundamentals requirement: <ul><li>ENGR 10</li><li>ENGR 14</li><li>ENGR 15</li><li>ENGR 20</li><li>ENGR 30</li><li>ENGR 50</li><li>ENGR 50E</li><li>ENGR 50M</li><li>ENGR 90</li><li>Any of the engineering courses not used to complete Engineering 1</li></ul>",
+            "transitions": [
+                {
+                    "action": "connector",
+                    "to": "connectingNode"
+                }
+            ]
+        },
+        {
             "number": "CS103",
             "id": "or",
             "name": "Mathematical Foundations of Computing",
@@ -306,10 +248,6 @@ export const MSESpec = {
             "name": "Programming Abstractions",
             "description": "Abstraction and its relation to programming. Software engineering principles of data abstraction and modularity. Object-oriented programming, fundamental data structures (such as stacks, queues, sets) and data-directed design. Recursion and recursive data structures (linked lists, trees, graphs). Introduction to time and space complexity analysis. Uses the programming language C++ covering its basic facilities. Prerequisite: 106A or equivalent. Summer quarter enrollment is limited.",
             "transitions": [
-                // {
-                //     "action": "prerequisite",
-                //     "to": "CS181"
-                // },
                 {
                     "action": "or",
                     "to": "CS106X"
@@ -364,7 +302,12 @@ export const MSESpec = {
             "id": "",
             "name": "Senior Project",
             "description": "Restricted to MS&E majors in their senior year. Students carry out a major project in groups of four, applying techniques and concepts learned in the major. Project work includes problem identification and definition, data collection and synthesis, modeling, development of feasible solutions, and presentation of results. Service Learning Course (certified by Haas Center).",
-            "transitions": [],
+            "transitions": [
+                {
+                    "action": "connector",
+                    "to": "connectingNode"
+                }
+            ],
             "units": 5
         },
         {
@@ -401,17 +344,16 @@ export const MSESpec = {
             ],
             "units": 2
         },
-        //TODO Add transition to or from here
         {
             "number": "MS&E180",
-            "id": "starter",
+            "id": "",
             "name": "Organizations: Theory and Management",
             "description": "For undergraduates only; preference to MS&E majors. Classical and contemporary organization theory; the behavior of individuals, groups, and organizations. Limited enrollment. Students must attend and complete an application at the first class session.",
             "transitions": [
-                // {
-                //     "action": "",
-                //     "to": ""
-                // }
+                {
+                    "action": "connector",
+                    "to": "connectingNode"
+                }
             ],
             "units": 4
         }

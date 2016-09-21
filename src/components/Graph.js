@@ -39,6 +39,7 @@ export default class Graph extends React.Component {
         if(this.state.show){
             if(this.state.colorTip) {
                 //TODO: add corequisites page
+                //TODO: add this later: (NOTE: There are different kinds of corequisites. Click here for more information.)
                 return (
                     <div>
                         <div className="toolbar">
@@ -49,10 +50,6 @@ export default class Graph extends React.Component {
                         <div className="key">
                             <p> Colors are listed in order from highest precedence to lowest. If a node fulfills two or
                                 more of the following, the node will have the color of the highest precedence color. </p>
-                            <p> <span id="red">Red nodes</span> are a special type of node. They do not represent classes; rather they connect to
-                                other nodes that fulfill that particular requirement. For example, imagine a "MATH" node that connects to MATH 101
-                                and MATH 102. This means either MATH 101 or MATH 102 can fulfill the "MATH" requirement. Read the node description for
-                                more details.</p>
                             <p> <span id="green">Green nodes</span> represent classes that have no prerequisites. Begin here when making long-term course plans.</p>
                             <p> <span id="yellow">Yellow nodes</span> represent classes that are prerequisites for major required classes but
                                 are not explicit required classes themselves. Many of these classes, however, can be counted towards the major.</p>
@@ -60,8 +57,7 @@ export default class Graph extends React.Component {
                                 that fulfill the same requirement. Look for the <span id="purple">purple nodes</span> that have a bidirectional
                                 connection to find the classes that fulfill the same requirement.</p>
                             <p> <span id="cyan">Cyan nodes</span> represent classes that have a corequisite. Hover over arows pointing to
-                                <span id="cyan"> cyan nodes </span> to see which classes are corequisites for that class. (NOTE: There are different kinds of corequisites.
-                                Click here for more information.)</p>
+                                <span id="cyan"> cyan nodes </span> to see which classes are corequisites for that class. </p>
                         </div>
                     </div>
                 );

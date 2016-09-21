@@ -1,7 +1,8 @@
 Stanford Prerequisite Graph
 =====================
 
-Visual representation of various major requirements at Stanford University.
+A visual representation of various major requirements at Stanford University.
+Use of the constructed graph will help students craft four-year plans.  
 
 ### Usage
 
@@ -12,15 +13,15 @@ open http://localhost:3000
 ```
 ### Currently Supported Majors
 * Computer Science
+* Management Science and Engineering
 * Mechanical Engineering
-* Management Science and Engineering (incomplete)
 
 ### Upcoming Features
 
-* Autocomplete for majors and track search bar.
+* Autocomplete for majors search bar.
 * Option to search for given requirements for a specific track (i.e. Artificial Intelligence for Computer Science).
+* Ability to click and view more information on classes located within a tooltip.
 * Shape-coded nodes.
-* Toolbar at the bottom of the graph page.
 * More majors!
 
 ### Dependencies

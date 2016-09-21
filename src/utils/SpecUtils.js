@@ -7,10 +7,11 @@ export default class SpecUtils {
         this.graph = this.specTransformer(this.spec);
         this.radius = radius;
         this.nodeSize = this.cacheNodeConnections();
+        this.name = "";
     }
 
     /**
-     * Takes in a UKSpec and translates it to a structure where D3 can consume
+     * Takes in a Spec and translates it to a structure where D3 can consume
      * it.
      * @param  {JS Object} spec The navigation spec
      * @return {JS Object}      The massaged structure
@@ -18,9 +19,11 @@ export default class SpecUtils {
     specTransformer(spec) {
         return spec.reduce((accum, item) => {
             accum.push({
-                'name': item.name,
-                'type': item.id || 'noType',
+                'number': item.number,
+                'name': item.name || '',
                 'description': item.description || '',
+                'units': item.units || "N/A",
+                'type': item.id || 'noType',
                 // 'meta': {
                     // 'url': item.url,
                     // 'state': item.state
@@ -57,7 +60,7 @@ export default class SpecUtils {
     cacheNodeConnections() {
         let numOfConnections = {};
         this.graph.map((node) => {
-            numOfConnections[node.name] = numOfConnections[node.name] ? numOfConnections[node.name] : 1; //every node is connected to itself
+            numOfConnections[node.number] = numOfConnections[node.number] ? numOfConnections[node.number] : 1; //every node is connected to itself
             node.links.map((link) => {
                 numOfConnections[link.d3.target] = numOfConnections[link.d3.target] ? numOfConnections[link.d3.target] + 1 : 1;
             });
@@ -77,8 +80,8 @@ export default class SpecUtils {
         return transitions.reduce((accum, item) => {
             accum.push({
                 'd3': {
-                    'source': node.name,
-                    'target': item.escalate ? parentNode.name : item.to,
+                    'source': node.number,
+                    'target': item.escalate ? parentNode.number : item.to,
                     'sourceType': node.id || 'noType',
                     'toType': item.toType || 'noType',
                     'action': item.action || ''
@@ -95,11 +98,36 @@ export default class SpecUtils {
      */
     getD3Links() {
         return this.graph.reduce(function(accum, item) {
+            // let arr = [item.description];
             Array.prototype.push.apply(accum, item.links.reduce((transitions, transition) => {
                 transitions.push(transition.d3);
                 return transitions;
             }, []));
             return accum;
         }, []);
+    }
+
+    getDescriptions() {
+        const theDescriptions = {};
+        this.graph.forEach(function(item){
+            theDescriptions[item.number] = item.description;
+        });
+        return theDescriptions;
+    }
+
+    getUnits() {
+        const theUnits = {};
+        this.graph.forEach(function(item) {
+            theUnits[item.number] = item.units;
+        });
+        return theUnits;
+    }
+
+    getNames() {
+        const theNames = {};
+        this.graph.forEach(function(item) {
+            theNames[item.number] = item.name;
+        });
+        return theNames;
     }
 }

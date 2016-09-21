@@ -16,7 +16,8 @@ export default class ForceDirectedGraph {
         const links = ForceDirectedGraph.SpecUtils.getD3Links(),
             descriptions = ForceDirectedGraph.SpecUtils.getDescriptions(),
             units = ForceDirectedGraph.SpecUtils.getUnits(),
-            names = ForceDirectedGraph.SpecUtils.getNames();
+            names = ForceDirectedGraph.SpecUtils.getNames(),
+            sites = ForceDirectedGraph.SpecUtils.getSites();
 
         // Compute the distinct nodes from the links.
         links.forEach(function(link) {
@@ -31,6 +32,7 @@ export default class ForceDirectedGraph {
                     name: names[link.source],
                     type: link.sourceType,
                     description: descriptions[link.source],
+                    site: sites[link.source],
                     units: units[link.source]
                 };
             }
@@ -39,6 +41,7 @@ export default class ForceDirectedGraph {
                 name: names[link.target],
                 type: link.toType,
                 description: descriptions[link.target],
+                site: sites[link.target],
                 units: units[link.target]
             });
         });
@@ -75,7 +78,9 @@ export default class ForceDirectedGraph {
                 if(d.type !== "lister") {
                     const course = `<div class="fistLine"> <strong> Course: </strong> ${d.name} </div>`;
                     const units = `<div> <strong> Units: </strong> ${d.units} </div>`;
-                    let description = "<div> <strong> Description: </strong> ", temp = d.description, charLimit = 86;
+                    let description = "<div> <strong> Description: </strong> ",
+                        temp = d.description,
+                        charLimit = 86;
                     while(temp.length > charLimit){
                         let index = temp.indexOf(" ", charLimit);
                         if(index > -1) {
@@ -95,7 +100,29 @@ export default class ForceDirectedGraph {
                 else {
                     // let description = `<div> The following classes can fulfill the ${d.name} requirement.<br>`;
                     // return description;
-                    return `<div class="firstLine"> ${d.description} </div>`;
+                    const charLimit = 100;
+                    let temp = d.description,
+                        ulIndex = temp.indexOf("<ul>"),
+                        description = "";
+                    if(ulIndex > -1) temp = temp.substring(0, ulIndex);
+
+                    while(temp.length > charLimit){
+                        let index = temp.indexOf(" ", charLimit);
+                        if(index > -1) {
+                            let str = temp.substring(0, index);
+                                description = description + str + "<br>";
+                                temp = temp.substring(index);
+                        }
+                        else {
+                            description = description + temp + "<br>";
+                            temp = "";
+                        }
+                    }
+                    description = description + temp;
+
+                    if(ulIndex > -1) description = description + d.description.substring(ulIndex);
+
+                    return `<div class="firstLine"> ${description} </div>`;
                 }
             });
 
@@ -241,7 +268,7 @@ export default class ForceDirectedGraph {
             .on("click", function(d){
                 if(d.type !== "lister") window.open(ForceDirectedGraph.Constants.carta + d.number);
                 else{
-                    // window.open(ForceDirectedGraph.Constants.exploreDegreesFirst);
+                    if(d.site) window.open(d.site);
                 }
             });
     }

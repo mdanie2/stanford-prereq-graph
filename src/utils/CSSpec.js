@@ -182,7 +182,8 @@ export const CSSpec = {
             "number": "Engineering",
             "name": "Engineering Elective",
             "id": "lister",
-            "description": "This is a test description and should be treated as such.",
+            "description": "To fulfill the Engineering Fundamentals requirement, a student must take a minimum of 13 units in engineering. Click the node to see what classes can be taken to fulfill the Engineering Fundamentals requirement.",
+            "site": "http://web.stanford.edu/group/ughb/2016-17/ENGR_Fundamentals_1617w.pdf",
             "transitions": [
                 {
                     "action": "connector",
@@ -219,13 +220,15 @@ export const CSSpec = {
             "number": "Science",
             "name": "Science Elective",
             "id": "lister",
-            "description": "You need to take one science class outside of PHYISCS 41 and PHYSICS 43. The following classes can be taken the science elective requirement:",
+            "description": "You need to take one science class outside of PHYISCS 41 and PHYSICS 43. Click the node to see what courses can be taken to fulfill the Science requirement. In addition, PSYCH 30 or AP Chemistry can be used to fulfill the science requirement.",
+            "site": "http://web.stanford.edu/group/ughb/2016-17/Science_Courses_1617w.pdf",
             "transitions": [
                 {
                     "action": "connector",
                     "to": "PHYSICS41"
                 }
-            ], "units": 0
+            ],
+            "units": 0
         },
         {
             "number": "Senior Project",
@@ -252,7 +255,7 @@ export const CSSpec = {
             "number": "TiS",
             "name": "Technology in Society",
             "id": "lister",
-            "description": "This is a test description and should be treated as such.",
+            "description": "You must take one course to complete the Technology in Society requirement. Click the node to see the courses that can be taken to fulfill the Technology in Society requirement.",
             "transitions": [
                 {
                     "action": "connector",
@@ -262,7 +265,9 @@ export const CSSpec = {
                     "action": "connector",
                     "to": "CS161"
                 }
-            ], "units": 0
+            ],
+            "site": "http://web.stanford.edu/group/ughb/cgi-bin/handbook/index.php/Approved_Courses",
+            "units": 0
         },
         {
             "number": "WIM",

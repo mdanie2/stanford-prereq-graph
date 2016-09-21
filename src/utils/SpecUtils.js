@@ -22,6 +22,7 @@ export default class SpecUtils {
                 'name': item.name || '',
                 'description': item.description || '',
                 'units': item.units || "N/A",
+                'site': item.site || '',
                 'type': item.id || 'noType',
                 // 'meta': {
                     // 'url': item.url,
@@ -104,6 +105,14 @@ export default class SpecUtils {
             }, []));
             return accum;
         }, []);
+    }
+
+    getSites() {
+        const theSites = {};
+        this.graph.forEach(function(item){
+            theSites[item.number] = item.site;
+        });
+        return theSites;
     }
 
     getDescriptions() {

@@ -60,6 +60,18 @@ export default class Selection extends React.Component {
                     <img id="frontpageimage" src="../../images/stanford.png" />
                 </div>
                 <div className="content">
+                    <p>Choose your major from the dropdown list.</p>
+                </div>
+                <div className="content">
+                    <p>Click "Create Graph" to construct a graph of major requirements for your selected major. </p>
+                </div>
+                <div className="content">
+                    <p>Hover over nodes or arrows to learn more. </p>
+                </div>
+                <div className="content">
+                    <p>Click on nodes to either be taken to course reviews or to gather more information regarding allowed classes for a major.</p>
+                </div>
+                <div className="content">
                     <input className="content" type="text" placeholder="Major" list="major" id="searchbar" onChange={this.handleMajorChange} />
                     <datalist id="major">
                         <option value="Computer Science" />

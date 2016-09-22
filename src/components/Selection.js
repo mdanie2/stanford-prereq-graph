@@ -56,13 +56,18 @@ export default class Selection extends React.Component {
         if(this.state.show){
             return (
             <div className="search">
-                <input type="text" placeholder="Major" list="major" onChange={this.handleMajorChange} />
-                <datalist id="major">
-                    <option value="Computer Science" />
-                    <option value="Management Science and Engineering" />
-                    <option value="Mechanical Engineering" />
-                </datalist>
-                <input type="submit" value="Create Graph" onClick={this.handleClick} />
+                <div className="content">
+                    <img id="frontpageimage" src="../../images/stanford.png" />
+                </div>
+                <div className="content">
+                    <input className="content" type="text" placeholder="Major" list="major" id="searchbar" onChange={this.handleMajorChange} />
+                    <datalist id="major">
+                        <option value="Computer Science" />
+                        <option value="Management Science and Engineering" />
+                        <option value="Mechanical Engineering" />
+                    </datalist>
+                    <input type="submit" value="Create Graph" onClick={this.handleClick} />
+                </div>
             </div>
             );
         }

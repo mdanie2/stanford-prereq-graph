@@ -23,7 +23,7 @@ export const MESpec = {
                 {
                     "action": "connector",
                     "to": "TiS",
-                    "toType": ""
+                    "toType": "lister"
                 }
             ],
             "units": 0
@@ -32,10 +32,11 @@ export const MESpec = {
         {
             "number": "TiS",
             "name": "TiS",
-            "id": "",
-            "description": "This is a test description and should be treated as such.",
+            "id": "lister",
+            "description": "One course required; must be on SoE Approved Courses list at <ughb.stanford.edu> the year taken. Click the node to be taken to the site.",
             "transitions": [],
-            "units": 0
+            "units": 0,
+            "site": "http://web.stanford.edu/group/ughb/cgi-bin/handbook/index.php/Approved_Courses"
         },
         //Math and Their Prequisites
         {
@@ -198,8 +199,8 @@ export const MESpec = {
         {
             "number": "Math Electives",
             "name": "Math Electives",
-            "id": "",
-            "description": "This is a test description and should be treated as such.",
+            "id": "lister",
+            "description": "24 units required and must include a course in differential equations (CME 102 Ordinary Differential Equations for Engineers or MATH 53 Ordinary Differential Equations with Linear Algebra; one of these required) and calculus-based Statistics (CME 106 Introduction to Probability and Statistics for Engineers or STATS 110 Statistical Methods in Engineering and the Physical Sciences or STATS 116 is required. Click the node to visit the site and view classes that satisy the Math requirement.",
             "transitions": [
                 {
                     "action": "connector",
@@ -210,7 +211,8 @@ export const MESpec = {
                     "to": "MATH53"
                 }
             ],
-            "units": 0
+            "units": 0,
+            "site": "http://web.stanford.edu/group/ughb/2016-17/MATH_STATS_1617w.pdf"
         },
         //Science and Their Prerequisites
         {
@@ -246,8 +248,9 @@ export const MESpec = {
         {
             "number": "Science Electives",
             "name": "Science Electives",
-            "id": "",
-            "description": "This is a test description and should be treated as such.",
+            "id": "lister",
+            "description": "20 units minimum and requires courses in calculus-based Physics and Chemistry, with at least a full year (3 courses) in one or the other. CHEM 31A Chemical Principles I/CHEM 31B Chemical Principles II are considered one course because they cover the same material as CHEM 31X Chemical Principles Accelerated but at a slower pace. CHEM 31X Chemical Principles Accelerated is recommended. Click the node to see what science courses can be taken to fulfill the Science requirement.",
+            "site": "http://web.stanford.edu/group/ughb/2016-17/Science_Courses_1617w.pdf",
             "transitions": [
                 {
                     "action": "connector",

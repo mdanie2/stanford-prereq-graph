@@ -58,6 +58,7 @@ export default class Graph extends React.Component {
                                 connection to find the classes that fulfill the same requirement.</p>
                             <p> <span id="cyan">Cyan nodes</span> represent classes that have a corequisite. Hover over arows pointing to
                                 <span id="cyan"> cyan nodes </span> to see which classes are corequisites for that class. </p>
+                            <p> <span id="gray"> Gray nodes</span> represent classes that have no special or noteworthy cases. </p>
                         </div>
                     </div>
                 );

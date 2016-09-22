@@ -1,7 +1,7 @@
  path.link {
      fill: none;
-     stroke: #666;
-     stroke-width: 1.5px;
+     stroke: #333;
+     stroke-width: 2.0px;
  }
 
  .connector{
@@ -114,4 +114,8 @@
  #yellow{
      color: #ffff00;
      font-weight: bold;
+ }
+
+ #gray{
+    color: #ccc;
  }

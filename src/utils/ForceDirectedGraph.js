@@ -70,6 +70,7 @@ export default class ForceDirectedGraph {
             .attr('height', height)
             .style('fill', 'none')
             .style('pointer-events', 'all');
+
         //TODO:Change lister html formatting
         let nodeTip = d3.tip()
             .attr('class', 'nodeTip')

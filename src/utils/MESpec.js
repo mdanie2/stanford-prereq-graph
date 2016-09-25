@@ -229,10 +229,6 @@ export const MESpec = {
                 {
                     "action": "prerequisite",
                     "to": "MATH42"
-                },
-                {
-                    "action": "prerequisite",
-                    "to": "PHYSICS41"
                 }
             ],
             "units": 5

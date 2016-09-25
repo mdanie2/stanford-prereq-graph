@@ -4,6 +4,7 @@ import _ from 'lodash';
 import Graph from './Graph';
 import {Constants} from '../utils/Constants';
 import {CSSpec} from '../utils/CSSpec';
+import {CESpec} from '../utils/CESpec';
 import {MESpec} from '../utils/MESpec';
 import {MSESpec} from '../utils/MSESpec';
 
@@ -46,6 +47,9 @@ export default class Selection extends React.Component {
         else if(spec === "MSESpec"){
             return MSESpec.navSpecs;
         }
+        else if(spec === "CESpec"){
+            return CESpec.navSpecs;
+        }
         //If we ever get here, there's a problem.
         else{
             return null;
@@ -74,6 +78,7 @@ export default class Selection extends React.Component {
                 <div className="content">
                     <input className="content" type="text" placeholder="Major" list="major" id="searchbar" onChange={this.handleMajorChange} />
                     <datalist id="major">
+                        <option value="Chemical Engineering" />
                         <option value="Computer Science" />
                         <option value="Management Science and Engineering" />
                         <option value="Mechanical Engineering" />

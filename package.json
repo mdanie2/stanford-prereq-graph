@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Boilerplate for ReactJS project with hot code reloading",
   "scripts": {
+    "bulldoze": "rm -rf node_modules; npm install",
     "start": "node server.js",
     "lint": "eslint src"
   },

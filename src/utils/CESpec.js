@@ -14,6 +14,11 @@ export const CESpec = {
                     "action": "connector",
                     "to": "ChemEng Depth",
                     "toType": "lister"
+                },
+                {
+                    "action": "connector",
+                    "to": "CHEMENG10",
+                    "toType": "noType"
                 }
             ],
             "units": 0

@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import _ from 'lodash';
 import Graph from './Graph';
 import {Constants} from '../utils/Constants';
-import {CSSpec} from '../utils/CSSpec';
 import {CESpec} from '../utils/CESpec';
+import {CSSpec} from '../utils/CSSpec';
+import {MatSciSpec} from '../utils/MatSciSpec';
 import {MESpec} from '../utils/MESpec';
 import {MSESpec} from '../utils/MSESpec';
 
@@ -38,17 +39,20 @@ export default class Selection extends React.Component {
 
     getSpecSheet = () => {
         let spec = this.state.specSheet;
-        if(spec === "CSSpec"){
+        if(spec === "CESpec"){
+            return CESpec.navSpecs;
+        }
+        else if(spec === "CSSpec"){
             return CSSpec.navSpecs;
+        }
+        else if(spec === "MatSciSpec"){
+            return MatSciSpec.navSpecs;
         }
         else if(spec === "MESpec"){
             return MESpec.navSpecs;
         }
         else if(spec === "MSESpec"){
             return MSESpec.navSpecs;
-        }
-        else if(spec === "CESpec"){
-            return CESpec.navSpecs;
         }
         //If we ever get here, there's a problem.
         else{
@@ -81,6 +85,7 @@ export default class Selection extends React.Component {
                         <option value="Chemical Engineering" />
                         <option value="Computer Science" />
                         <option value="Management Science and Engineering" />
+                        <option value="Materials Science and Engineering" />
                         <option value="Mechanical Engineering" />
                     </datalist>
                     <input type="submit" value="Create Graph" onClick={this.handleClick} />

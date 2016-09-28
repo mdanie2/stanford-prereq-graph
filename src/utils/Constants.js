@@ -16,7 +16,8 @@ export const Constants = {
     "spec": {
         "Chemical Engineering": "CESpec",
         "Computer Science": "CSSpec",
-        "Mechanical Engineering": "MESpec",
-        "Management Science and Engineering": "MSESpec"
+        "Management Science and Engineering": "MSESpec",
+        "Materials Science and Engineering": "MatSciSpec",
+        "Mechanical Engineering": "MESpec"
     }
 }
